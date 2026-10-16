@@ -22,10 +22,11 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
+  body{display:flex;align-items:center;justify-content:center}
   body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:#05140f;color:var(--ink);
     -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overscroll-behavior:none}
   button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-  .app{max-width:1100px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--paper)}
+  .app{width:100%;max-width:1100px;margin:0 auto;height:min(100vh,600px);height:min(100dvh,600px);flex:0 0 auto;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--paper)}
   main{flex:1;min-height:0;position:relative}
   .screen{position:absolute;inset:0;display:none}
   .screen.active{display:flex}
@@ -502,7 +503,7 @@
   @keyframes shine{0%,70%,100%{transform:translateX(-120px)}85%{transform:translateX(160px)}}
   @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   .msgprev{max-height:112px!important;margin:10px 0 14px!important}
-  #v12frame{position:fixed;inset:0;width:100%;height:100%;border:0;z-index:300;background:#060b15;opacity:0;transition:opacity .7s ease}
+  #v12frame{position:fixed;left:50%;top:50%;width:min(100vw,1100px);height:min(100vh,600px);transform:translate(-50%,-50%);border:0;z-index:300;background:#060b15;opacity:0;transition:opacity .7s ease}
   #v12frame.on{opacity:1}
 </style>
 </head>
@@ -542,7 +543,7 @@
   --me:#20434a;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-:host{position:fixed;inset:0;z-index:90;display:block;font-family:var(--body);background:var(--bg);color:var(--ink);overflow:hidden;line-height:normal;text-align:left;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+:host{position:fixed;left:50%;top:50%;width:min(100vw,1100px);height:min(100vh,600px);transform:translate(-50%,-50%);z-index:90;display:block;font-family:var(--body);background:var(--bg);color:var(--ink);overflow:hidden;line-height:normal;text-align:left;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
 :host([hidden]){display:none!important}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 input{font:inherit}
@@ -613,7 +614,7 @@ h1{font-size:clamp(26px,6.4vw,40px)} h2{font-size:clamp(20px,4.8vw,28px)}
   .portal-head{margin-bottom:22px;min-height:0}
   .portals{gap:26px 12px}
 }
-@media (orientation:landscape) and (max-height:500px){
+@media (orientation:landscape) and (max-height:640px){
   .hero{max-width:760px;display:grid;grid-template-columns:auto 1fr;column-gap:28px;row-gap:6px;text-align:left;align-items:center}
   .emblem{grid-row:1 / span 3;width:min(130px,30vh);margin:16px}
   .hero .eyebrow,.hero h1,.hero .lead{grid-column:2}
@@ -788,17 +789,17 @@ h1{font-size:clamp(26px,6.4vw,40px)} h2{font-size:clamp(20px,4.8vw,28px)}
     </div>
     <p class="eyebrow">Gerbang Ketiga</p>
     <h1>Gerbang <span class="grad">RESPOND</span></h1>
-    <p class="lead">Gerbang <b>Connect</b> dan <b>Appreciate</b> sudah terbuka. Berikutnya, adalah Gerbang <b>Respond</b>, tempat suara tim didengar.</p>
+    <p class="lead">Gerbang <b>Connect</b> dan <b>Appreciate</b> sudah terbuka. Berikutnya menunggumu: <b>Respond</b>, tempat suara tim didengar.</p>
     <form class="name-form" id="nameForm" autocomplete="off" novalidate>
       <label for="nameInput">Siapa namamu, Leader?</label>
-      <input class="input" id="nameInput" type="text" maxlength="20" placeholder="Tuliskan nama Bapak/Ibu di sini..." enterkeyhint="go">
+      <input class="input" id="nameInput" type="text" maxlength="20" placeholder="Tulis nama panggilanmu" enterkeyhint="go">
       <div class="hint-err" id="nameErr" role="alert"></div>
       <button class="btn-primary" type="submit">MASUK GERBANG
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </button>
     </form>
   </div>
-  <div class="copy">© Education and Training Department 2026</div>
+  <div class="copy">© Education and Training Departement 2026</div>
 </section>
 
 <!-- ================= 2. GERBANG CARE ================= -->
@@ -810,7 +811,7 @@ h1{font-size:clamp(26px,6.4vw,40px)} h2{font-size:clamp(20px,4.8vw,28px)}
     </div>
     <div class="field" id="field"><div class="portals" id="portals"></div></div>
   </div>
-  <div class="copy">© Education and Training Department 2026</div>
+  <div class="copy">© Education and Training Departement 2026</div>
 </section>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -827,7 +828,7 @@ h1{font-size:clamp(26px,6.4vw,40px)} h2{font-size:clamp(20px,4.8vw,28px)}
   <main>
   </main>
 
-  <footer>© Education and Training Department 2026</footer>
+  <footer>© Education and Training Departement 2026</footer>
 
 </div>
 
@@ -1061,12 +1062,79 @@ body::before{content:'';position:fixed;inset:-6%;
 .scene .lamp{animation:lampf 5s ease-in-out infinite}
 @keyframes lampf{0%,100%{opacity:1}50%{opacity:.82}}
 @media (prefers-reduced-motion:reduce){.scene .lamp{animation:none!important}}
+
+/* ===== MODE LEBAR (landscape, tinggi 600px): semua muat satu layar tanpa scroll ===== */
+.col,.gbody,.gleft,.gright{display:contents}
+.gwait{display:none}
+#stage:not(.wide) .scene.w,#stage.wide .scene.p{display:none}
+#stage.office:not(.wide) .scene.office.p,#stage.office.wide .scene.office.w,
+#stage.shop:not(.wide) .scene.shop.p,#stage.shop.wide .scene.shop.w{opacity:1}
+#stage.wide .col{display:flex;flex-direction:column;min-width:0}
+#stage.wide .gbody{display:grid;grid-template-columns:1fr 1.12fr;flex:1;min-height:0;padding-bottom:1.9em}
+#stage.wide .gleft{display:flex;flex-direction:column;min-height:0;min-width:0;border-right:.07em solid rgba(255,255,255,.1)}
+#stage.wide .gright{display:flex;flex-direction:column;min-height:0;min-width:0;position:relative;background:rgba(8,15,30,.5)}
+#stage.wide .copy{position:absolute;left:0;right:0;bottom:0;margin:0;padding:.35em 0 .4em;z-index:2}
+/* welcome */
+#stage.wide #welcome{flex-direction:row;align-items:center;gap:3.2em;padding:2.4em 3.4em 2.2em;overflow:hidden}
+#stage.wide #welcome .wl{flex:1;justify-content:center}
+#stage.wide #welcome .wr{flex:1.5;justify-content:center}
+#stage.wide #welcome .hero{height:14.6em;width:100%;max-width:25em;margin:0 auto}
+#stage.wide #welcome .phone{transform:scale(1.28);transform-origin:50% 0;top:.6em}
+#stage.wide #welcome .ringb{top:.2em;right:calc(50% - 7em)}
+#stage.wide #welcome .ftag{font-size:.95em}
+#stage.wide #welcome .ftag.a{left:2%;top:2em}#stage.wide #welcome .ftag.b{right:2%;top:3.4em}
+#stage.wide #welcome .ftag.c{left:5%;top:9.8em}#stage.wide #welcome .ftag.d{right:4%;top:11em}
+#stage.wide #welcome h1{text-align:left;font-size:2.15em;margin:0 0 .45em}
+#stage.wide #welcome p.t{font-size:1.02em;margin:0 0 .9em}
+#stage.wide #welcome .mission{font-size:.95em;margin-bottom:1.1em}
+#stage.wide #welcome .btn{max-width:22em}
+/* tutorial */
+#stage.wide #tutorial{flex-direction:row;gap:2.6em;padding:2.9em 2.6em 2em;overflow:hidden}
+#stage.wide #tutorial .col{flex:1}
+#stage.wide #tutorial .demo{height:19.5em;margin-bottom:0}
+#stage.wide #tutorial .dhand{top:13em}
+#stage.wide #tutorial .tut-sub{font-size:.9em}
+#stage.wide #tutorial .steps{margin-bottom:.6em;gap:.45em}
+#stage.wide #tutorial .st{font-size:.86em}
+#stage.wide #tutorial .stp4{margin-bottom:.6em;gap:.3em}
+#stage.wide #tutorial .stp{padding:.35em .7em;font-size:.78em}
+#stage.wide #tutorial .btn{margin-top:.7em}
+/* incoming */
+#stage.wide #incoming{padding:2.6em 2em 2em}
+#stage.wide .inc-av{margin:1em 0 .8em}
+/* game */
+#stage.wide .topbar{padding-top:.55em;padding-bottom:.4em}
+#stage.wide .steps4{padding:.4em .9em .35em}
+#stage.wide .msg{font-size:.95em;max-width:84%}
+#stage.wide .dv{font-size:.76em}
+#stage.wide #chat{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 1.6em);mask-image:linear-gradient(to bottom,transparent 0,#000 1.6em)}
+#stage.wide #chat{padding:.7em 1em .6em}
+#stage.wide #tray{flex:1;max-height:none;min-height:0;border-top:0;border-left:.14em solid var(--c,#4a9cf0);padding:1em 1.4em 2em;background:rgba(8,15,30,.78);overflow:hidden;justify-content:center}
+#stage.wide #tq{font-size:1.05em}
+#stage.wide #th{font-size:.82em;margin:.3em 0 .7em}
+#stage.wide #opts{gap:.5em;padding-bottom:.3em}
+#stage.wide .opt{font-size:.92em;padding:.62em .85em}
+#stage.wide .gwait{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5em;padding:2em;text-align:center;color:#9fb3d6;font-size:.95em;line-height:1.5}
+#stage.wide .gwait span{font-size:2.2em}
+#stage.wide #tray:not(.hide)~.gwait{display:none}
+#stage.wide #toast{width:min(30em,60%);left:50%}
+/* debrief */
+#stage.wide #debrief{flex-direction:row;align-items:center;gap:2.6em;padding:2.8em 3em 2.2em;overflow:hidden}
+#stage.wide #debrief .dl{flex:.85;justify-content:center;align-items:center}
+#stage.wide #debrief .dr{flex:1.3;justify-content:center}
+#stage.wide .trophy{font-size:3.2em}
+#stage.wide #debrief h2{font-size:1.6em}
+#stage.wide .box{font-size:.9em;margin-bottom:.7em;padding:.8em 1em}
+#stage.wide .rc{padding:.4em 0}
+#stage.wide #debrief .btn.alt{margin-top:.2em}
+#stage.wide.office .bg .shade{background:rgba(8,14,28,.76)}
+#stage.wide.shop .bg .shade{background:linear-gradient(180deg,rgba(8,14,28,.66),rgba(8,14,28,.5))}
 </style>
 </head>
 <body>
 <div id="stage" class="office">
   <div class="bg">
-<svg class="scene office" viewBox="0 0 360 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<svg class="scene office p" viewBox="0 0 360 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
 <defs>
 <linearGradient id="wO" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a47"/><stop offset="1" stop-color="#121c33"/></linearGradient>
 <linearGradient id="dayO" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fc3f0"/><stop offset="1" stop-color="#dcefff"/></linearGradient>
@@ -1119,7 +1187,7 @@ body::before{content:'';position:fixed;inset:-6%;
 <path d="M50 372l26 6-10 14z" fill="#f2bd42"/>
 <ellipse cx="62" cy="410" rx="40" ry="26" fill="#ffe6a3" opacity=".12"/>
 </svg>
-<svg class="scene shop" viewBox="0 0 360 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<svg class="scene shop p" viewBox="0 0 360 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
 <defs>
 <linearGradient id="wS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a47"/><stop offset="1" stop-color="#101a2e"/></linearGradient>
 <linearGradient id="fS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2437"/><stop offset="1" stop-color="#0b101a"/></linearGradient>
@@ -1186,6 +1254,112 @@ body::before{content:'';position:fixed;inset:-6%;
 <!-- bercak oli -->
 <ellipse cx="205" cy="560" rx="52" ry="9" fill="#05080f" opacity=".5"/>
 </svg>
+<svg class="scene office w" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs>
+<linearGradient id="wOW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2d4c"/><stop offset="1" stop-color="#121c33"/></linearGradient>
+<linearGradient id="dayOW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fc3f0"/><stop offset="1" stop-color="#dcefff"/></linearGradient>
+<radialGradient id="scOW"><stop offset="0" stop-color="#9fd0ff" stop-opacity=".9"/><stop offset="1" stop-color="#9fd0ff" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="800" height="500" fill="url(#wOW)"/>
+<rect y="448" width="800" height="52" fill="#0d1423"/>
+<g fill="#dfeaff" opacity=".35"><rect x="120" y="14" width="150" height="12" rx="3"/><rect x="530" y="14" width="150" height="12" rx="3"/></g>
+<!-- jendela kaca ke area bengkel -->
+<rect x="40" y="52" width="340" height="206" rx="4" fill="url(#dayOW)" opacity=".6"/>
+<rect x="40" y="150" width="340" height="108" fill="#243756" opacity=".9"/>
+<path d="M92 236C92 224 98 220 110 219L132 216L152 194C156 190 162 188 170 188H214C222 188 227 190 232 197L248 217C260 220 266 226 266 236V243H92Z" fill="#3a5584"/>
+<circle cx="120" cy="244" r="13" fill="#0a0f1a"/><circle cx="238" cy="244" r="13" fill="#0a0f1a"/>
+<rect x="290" y="176" width="11" height="82" fill="#d6a526"/><rect x="318" y="190" width="30" height="68" rx="3" fill="#2a6fb0"/>
+<g stroke="#0e1729" stroke-width="5"><path d="M40 52h340v206h-340zM153 52v206M267 52v206M40 150h340"/></g>
+<!-- jam dinding -->
+<circle cx="450" cy="104" r="34" fill="#e8eefb" opacity=".9"/><circle cx="450" cy="104" r="34" fill="none" stroke="#0e1729" stroke-width="4"/>
+<path d="M450 104V82M450 104L466 113" stroke="#1b2740" stroke-width="3" stroke-linecap="round"/>
+<!-- papan jadwal -->
+<rect x="520" y="62" width="230" height="130" rx="5" fill="#e9eef8" opacity=".88"/><rect x="520" y="62" width="230" height="130" rx="5" fill="none" stroke="#0e1729" stroke-width="3"/>
+<g stroke="#5b8def" stroke-width="4" stroke-linecap="round" opacity=".85"><path d="M540 92H640M540 114H700M540 136H620M540 158H670"/></g>
+<rect x="690" y="76" width="40" height="32" fill="#f2bd42"/><rect x="700" y="128" width="34" height="30" fill="#2fc59a"/>
+<!-- rak arsip -->
+<rect x="540" y="214" width="210" height="150" rx="3" fill="#18253f" stroke="#2b3d61" stroke-width="2"/>
+<g stroke="#2b3d61" stroke-width="2"><path d="M540 264H750M540 314H750"/></g>
+<g><rect x="552" y="226" width="16" height="38" fill="#5b8def"/><rect x="572" y="230" width="16" height="34" fill="#f2bd42"/><rect x="592" y="224" width="16" height="40" fill="#2fc59a"/><rect x="612" y="228" width="16" height="36" fill="#f0884a"/><rect x="632" y="226" width="16" height="38" fill="#a67cf0"/><rect x="652" y="230" width="18" height="34" fill="#5b8def"/><rect x="676" y="226" width="16" height="38" fill="#2fc59a"/><rect x="696" y="230" width="16" height="34" fill="#f2bd42"/>
+<rect x="552" y="276" width="18" height="38" fill="#f0884a"/><rect x="574" y="280" width="16" height="34" fill="#5b8def"/><rect x="594" y="274" width="16" height="40" fill="#2fc59a"/><rect x="614" y="278" width="18" height="36" fill="#f2bd42"/>
+<rect x="552" y="326" width="170" height="30" rx="2" fill="#2b3d61"/></g>
+<!-- tanaman -->
+<rect x="14" y="368" width="38" height="44" rx="5" fill="#8a5a3a"/>
+<g fill="#2fc59a" opacity=".85"><ellipse cx="33" cy="344" rx="10" ry="26"/><ellipse cx="16" cy="356" rx="9" ry="21" transform="rotate(-25 16 356)"/><ellipse cx="50" cy="356" rx="9" ry="21" transform="rotate(25 50 356)"/></g>
+<!-- meja -->
+<rect x="0" y="412" width="800" height="22" fill="#3a4a6a"/>
+<rect x="0" y="434" width="800" height="66" fill="#1a2640"/>
+<path d="M0 470H800" stroke="#26365a" stroke-width="2"/>
+<!-- monitor -->
+<ellipse cx="260" cy="350" rx="120" ry="80" fill="url(#scOW)" opacity=".35"/>
+<rect x="190" y="290" width="150" height="100" rx="6" fill="#0a1220" stroke="#33466b" stroke-width="4"/>
+<rect x="199" y="299" width="132" height="82" rx="2" fill="#2a5a9a" opacity=".9"/>
+<g fill="#cfe4ff" opacity=".75"><rect x="209" y="311" width="60" height="6" rx="2"/><rect x="209" y="326" width="100" height="6" rx="2"/><rect x="209" y="341" width="80" height="6" rx="2"/><rect x="209" y="356" width="44" height="6" rx="2"/></g>
+<rect x="256" y="390" width="18" height="16" fill="#33466b"/><rect x="236" y="404" width="58" height="8" rx="3" fill="#33466b"/>
+<rect x="196" y="418" width="104" height="9" rx="3" fill="#4a5a7c" opacity=".9"/>
+<!-- mug, dokumen, lampu meja -->
+<rect x="400" y="388" width="22" height="24" rx="3" fill="#e8c9c7"/><path d="M422 394h7a6 6 0 0 1 0 13h-7" fill="none" stroke="#e8c9c7" stroke-width="3"/>
+<rect x="440" y="398" width="64" height="14" rx="2" fill="#e9eef8" opacity=".88"/><rect x="446" y="390" width="56" height="10" rx="2" fill="#cfd9ee" opacity=".8"/>
+<path d="M98 412V362L132 336" fill="none" stroke="#f2bd42" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M120 326l32 8-12 17z" fill="#f2bd42"/>
+<ellipse cx="136" cy="372" rx="52" ry="30" fill="#ffe6a3" opacity=".12"/>
+</svg>
+
+<svg class="scene shop w" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="wallW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9eef2"/><stop offset="1" stop-color="#c3ccd3"/></linearGradient>
+              <linearGradient id="floorW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949b"/><stop offset="1" stop-color="#6f767d"/></linearGradient>
+              <linearGradient id="beamW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+              <linearGradient id="sky2W" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd0f2"/><stop offset="1" stop-color="#e4f2fc"/></linearGradient>
+              <pattern id="hzW" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="16" fill="#f4b81f"/><rect x="8" width="8" height="16" fill="#2a2f38"/></pattern>
+            </defs>
+            <rect width="800" height="500" fill="url(#wallW)"/>
+            <rect y="0" width="800" height="26" fill="#aab4bd"/>
+            <path d="M0 26H800M200 0V26M400 0V26M600 0V26" stroke="#8d98a2" stroke-width="3"/>
+            <!-- pintu rolling -->
+            <rect x="24" y="70" width="200" height="270" rx="4" fill="#93a2b2"/>
+            <g stroke="#7d8d9e" stroke-width="3"><path d="M24 96H224M24 122H224M24 148H224M24 174H224M24 200H224M24 226H224"/></g>
+            <rect x="24" y="226" width="200" height="114" fill="url(#sky2W)" opacity=".85"/>
+            <!-- jendela -->
+            <rect x="580" y="72" width="190" height="96" rx="4" fill="url(#sky2W)"/>
+            <g stroke="#7d8d9e" stroke-width="6"><path d="M580 72h190v96h-190zM643 72v96M707 72v96M580 120h190"/></g>
+            <!-- pegboard + perkakas -->
+            <rect x="560" y="196" width="210" height="130" rx="5" fill="#5f7184" stroke="#4a5a6b" stroke-width="3"/>
+            <g fill="#e9eef2">
+              <rect x="582" y="214" width="7" height="62" rx="3"/><circle cx="585.5" cy="212" r="10"/>
+              <rect x="618" y="216" width="7" height="54" rx="3"/><rect x="608" y="208" width="27" height="12" rx="3"/>
+              <rect x="654" y="214" width="7" height="68" rx="3"/><path d="M644 210h27v13h-27z"/>
+              <rect x="690" y="216" width="34" height="12" rx="3"/><rect x="690" y="236" width="40" height="12" rx="3"/><rect x="690" y="256" width="28" height="12" rx="3"/>
+            </g>
+            <rect x="576" y="300" width="180" height="8" rx="4" fill="#f08a3c"/>
+            <!-- lampu gantung -->
+            <g>
+              <path d="M180 26v34M400 26v34M620 26v34" stroke="#6b7785" stroke-width="3"/>
+              <path d="M150 64h60l-10-16h-40zM370 64h60l-10-16h-40zM590 64h60l-10-16h-40z" fill="#5d6b7a"/>
+            </g>
+            <polygon points="320,0 480,0 660,500 140,500" fill="url(#beamW)"/>
+            <rect y="400" width="800" height="100" fill="url(#floorW)"/>
+            <rect y="404" width="800" height="14" fill="url(#hzW)" opacity=".85"/>
+            <g stroke="#5d646b" stroke-width="2" opacity=".5"><line x1="0" y1="450" x2="800" y2="450"/><line x1="260" y1="418" x2="170" y2="500"/><line x1="540" y1="418" x2="630" y2="500"/></g>
+            <!-- lift + mobil (kiri) -->
+            <g>
+              <rect x="92" y="190" width="18" height="214" rx="4" fill="#d6a526"/><rect x="330" y="190" width="18" height="214" rx="4" fill="#d6a526"/>
+              <rect x="80" y="394" width="42" height="12" rx="3" fill="#8f6f17"/><rect x="318" y="394" width="42" height="12" rx="3" fill="#8f6f17"/>
+              <rect x="110" y="316" width="220" height="10" rx="3" fill="#f4b81f"/>
+              <path d="M130 308C130 292 138 286 154 284L184 280L204 256C208 250 216 248 224 248H270C280 248 286 252 292 260L310 284C324 288 330 298 330 308V316H130Z" fill="#3b6fb6"/>
+              <path d="M196 282L210 260H262L282 282Z" fill="#cfe6f8" opacity=".85"/>
+              <circle cx="168" cy="318" r="20" fill="#1c2128"/><circle cx="168" cy="318" r="8" fill="#6d7886"/>
+              <circle cx="290" cy="318" r="20" fill="#1c2128"/><circle cx="290" cy="318" r="8" fill="#6d7886"/>
+            </g>
+            <!-- lemari perkakas + ban + drum (kanan) -->
+            <g>
+              <rect x="620" y="352" width="130" height="150" rx="5" fill="#c4453d"/><rect x="620" y="352" width="130" height="16" rx="4" fill="#9a312b"/>
+              <g stroke="#8d2c26" stroke-width="2"><path d="M624 392H746M624 424H746M624 456H746"/></g>
+              <g fill="#f0cfcc"><rect x="672" y="374" width="26" height="6" rx="3"/><rect x="672" y="406" width="26" height="6" rx="3"/><rect x="672" y="438" width="26" height="6" rx="3"/></g>
+              <rect x="470" y="440" width="76" height="18" rx="9" fill="#1c2128"/><rect x="470" y="458" width="76" height="18" rx="9" fill="#232a33"/><rect x="470" y="476" width="76" height="18" rx="9" fill="#1c2128"/>
+              <rect x="560" y="420" width="46" height="80" rx="6" fill="#2f78bd"/><path d="M560 440h46M560 482h46" stroke="#21588d" stroke-width="3"/>
+            </g>
+          </svg>
 <div class="shade"></div>
 </div>
 
@@ -1197,6 +1371,7 @@ body::before{content:'';position:fixed;inset:-6%;
 
   <!-- LAYAR 1: PEMBUKA -->
   <section id="welcome" class="screen on">
+    <div class="col wl">
     <div class="hero">
       <div class="ringb">📞</div>
       <div class="phone">
@@ -1207,6 +1382,8 @@ body::before{content:'';position:fixed;inset:-6%;
       <div class="ftag c" style="--c:#f2bd42">LA</div>
       <div class="ftag d" style="--c:#a67cf0">RI</div>
     </div>
+    </div>
+    <div class="col wr">
     <h1>RESPOND: <span>Dengar, Putuskan, dan Kabarkan Kembali</span></h1>
     <p class="t">Halo, Bapak/Ibu Leader! 👋 Pada gamifikasi ini, Bapak/Ibu adalah seorang Leader tim bengkel. Akan ada 5 anggota tim yang menghubungi lewat telepon dan chat membawa kabar, keluhan, dan permintaan.</p>
     <div class="mission"><strong>Misi Bapak/Ibu:</strong> Balas setiap anggota tim dengan 4 langkah RESPOND: <strong>Dengarkan, Pastikan, Lakukan, dan Kabari Hasilnya (DE-TIK-LA-RI)</strong>. Pilih balasan yang tepat untuk setiap langkahnya!</div>
@@ -1215,11 +1392,13 @@ body::before{content:'';position:fixed;inset:-6%;
       <input type="text" id="playerName" placeholder="Ketik nama Bapak/Ibu di sini..." autocomplete="off" maxlength="40">
     </div>
     <button id="btnStart" class="btn" type="button" disabled>Mulai Gamifikasi</button>
+    </div>
     <div class="copy">© Education and Training Department 2026</div>
   </section>
 
   <!-- LAYAR 2: PETUNJUK -->
   <section id="tutorial" class="screen">
+    <div class="col tl">
     <h2>Petunjuk <span>Pengerjaan</span></h2>
     <p class="tut-sub">Halo, <b id="tName"></b>! Akan ada <b>5 percakapan</b> dengan anggota tim. Di tiap percakapan, Bapak/Ibu membalas dalam <b>4 langkah</b>. Lihat contoh singkat ini dulu.</p>
 
@@ -1238,6 +1417,8 @@ body::before{content:'';position:fixed;inset:-6%;
       <div class="dhand">👆</div>
     </div>
 
+    </div>
+    <div class="col tr">
     <div class="steps">
       <div class="st"><i>1</i><div><b>Baca pesan/telepon</b> dari anggota tim yang masuk.</div></div>
       <div class="st"><i>2</i><div><b>Lihat langkah yang sedang menyala</b>, lalu <b>ketuk balasan</b> yang paling cocok untuk langkah itu.</div></div>
@@ -1257,6 +1438,7 @@ body::before{content:'';position:fixed;inset:-6%;
       <div class="chip no"><b>✗ Belum tepat</b>Silakan coba pilih balasan lain.</div>
     </div>
     <button id="btnGo" class="btn" type="button">Saya Mengerti, Mulai!</button>
+    </div>
     <div class="copy">© Education and Training Department 2026</div>
   </section>
 
@@ -1291,6 +1473,7 @@ body::before{content:'';position:fixed;inset:-6%;
       <div class="sc" style="--c:#a67cf0;--cs:rgba(166,124,240,.2)"><b>RI</b><small>Kabari</small></div>
     </div>
 
+    <div class="gbody"><div class="gleft">
     <div class="chead">
       <div class="av" id="cAv">📦</div>
       <div><b id="cName"></b><small id="cRole"></small></div>
@@ -1298,17 +1481,21 @@ body::before{content:'';position:fixed;inset:-6%;
     </div>
 
     <div id="chat"></div>
-
+    </div>
+    <div class="gright">
     <div id="tray" class="hide">
       <div id="tq"></div>
       <div id="th"></div>
       <div id="opts"></div>
     </div>
+    <div class="gwait"><span>💬</span>Baca pesan anggota tim dulu, lalu pilih balasanmu di sini.</div>
+    </div></div>
     <div class="copy">© Education and Training Department 2026</div>
   </section>
 
   <!-- LAYAR 4: DEBRIEF -->
   <section id="debrief" class="screen">
+    <div class="col dl">
     <div class="trophy">🏆</div>
     <h2>Hari kerja selesai, <br>Leader <span id="dName"></span>!</h2>
     <p class="lead">Kelima anggota tim sudah Bapak/Ibu respons sampai tuntas.</p>
@@ -1318,6 +1505,8 @@ body::before{content:'';position:fixed;inset:-6%;
       <div class="stat"><b>5/5</b><small>Kasus Terselesaikan</small></div>
     </div>
 
+    </div>
+    <div class="col dr">
     <div class="box">
       <h3>Kesimpulan Gamifikasi</h3>
       <p><strong>&ldquo;I Listen to You&rdquo; tidak sama dengan &ldquo;I Agree With You&rdquo;.</strong> Dalam memberikan RESPOND, tidak berarti semua permintaan harus dikabulkan.</p>
@@ -1333,6 +1522,7 @@ body::before{content:'';position:fixed;inset:-6%;
     </div>
 
     <button id="btnAgain" class="btn alt" type="button">Ulang Gamifikasi</button>
+    </div>
     <div class="copy">© Education and Training Department 2026</div>
   </section>
 
@@ -1353,10 +1543,10 @@ const SCEN=[
  {name:'Dimas',role:'Staf Logistik',icon:'📦',mode:'chat',time:'08:15',
   intro:'Pagi hari. Ponsel Bapak/Ibu berbunyi: Dimas dari tim logistik mengirim kabar soal spare part yang tertahan.',
   skip:'Beberapa jam kemudian: Bapak/Ibu sudah menghubungi HO dan mendapat kabar terbaru.',
-  text:`Pak/Bu, izin update soal spare part mobil 010, infonya VUM masih belum datang dari HO. SLA-nya sudah lewat 1 hari, DC nanyain terus. Tolong bantu ditanyakan ya Pak ke tim VUM.`,
-  react:{DE:`Iya Pak/Bu, lumayan bikin pusing 😅 Terima kasih sudah mengerti posisi saya.`,
-         TIK:`Nomor PO-nya PO-2026-0417 Pak/Bu. PIC VUM di HO terakhir saya kontak Bu Retno kemarin sore.`,
-         RI:`Siap Pak/Bu, langsung saya kabari DC sekarang. Lega akhirnya ada kepastian 🙏`},
+  text:`Pak, izin update soal spare part mobil 010, infonya VUM masih belum datang dari HO. SLA-nya sudah lewat 1 hari, DC nanyain terus. Tolong bantu ditanyakan ya Pak ke tim VUM.`,
+  react:{DE:`Iya Pak, lumayan bikin pusing 😅 Terima kasih sudah ngerti posisi saya.`,
+         TIK:`Nomor PO-nya PO-2026-0417 Pak. PIC VUM di HO terakhir saya kontak Bu Retno kemarin sore.`,
+         RI:`Siap Pak, langsung saya kabari DC sekarang. Lega akhirnya ada kepastian 🙏`},
   options:[
    {id:'DE',text:`Saya paham pasti pusing ya ditagih terus sama DC, padahal barangnya memang belum turun dari HO. Terima kasih sudah proaktif mengawal SLA-nya.`},
    {id:'TIK',text:`Biar saya gampang follow-up, tolong pastikan nomor PO/tiketnya berapa? Dan siapa nama PIC VUM di HO yang terakhir kamu kontak?`},
@@ -1365,26 +1555,26 @@ const SCEN=[
    {id:'TRAP',text:`Waduh, urusan HO mah emang suka telat. Udah bilang aja ke DC suruh sabar nunggu, nanti juga datang barangnya.`}]},
 
  {name:'Rudi',role:'Mekanik Senior',icon:'🔧',mode:'call',time:'10:05',
-  intro:'Bengkel sedang ramai. Rudi, mekanik senior Bapak/Ibu, menelepon dengan suara terdengar cemas.',
+  intro:'Bengkel sedang ramai. Rudi, mekanik senior Bapak/Ibu, menelepon dengan suara terdengar lelah.',
   skip:'Beberapa jam kemudian: Bapak/Ibu sudah mengecek loading mekanik dan jadwal rilis.',
-  text:`Pak/Bu, antrean servis hari ini numpuk banget. Saya udah kerjain non-stop dari pagi, tapi di stall masih ada 3 mobil lagi. Saya khawatir bisa nggak selesai semua hari ini.`,
+  text:`Pak/Bu, antrean servis hari ini numpuk banget. Saya udah kerjain non-stop dari pagi, tapi di stall masih ada 3 mobil lagi. Fisik saya udah nggak sanggup kalau harus beres semua hari ini.`,
   react:{DE:`Iya Pak/Bu... beneran banyak banget hari ini. Terima kasih sudah coba untuk mengerti kondisinya.`,
          TIK:`Yang harus rilis sore ini cuma mobil engkel aja, Pak/Bu. Dua lainnya servis berkala, janjinya masih fleksibel.`,
          RI:`Siap Pak/Bu, terima kasih banyak. Segera saya selesaikan servis untuk mobil itu ya 🙏`},
   options:[
-   {id:'DE',text:`Saya perhatikan memang bengkel kita hari ini penuh banget. Wajar kalau kamu merasa khawatir, terima kasih ya udah mau kasih tahu saya.`},
+   {id:'DE',text:`Saya perhatikan memang bengkel kita hari ini penuh banget. Wajar kalau kamu merasa kelelahan, terima kasih ya udah kerja keras dari pagi.`},
    {id:'TIK',text:`Dari 3 mobil yang tersisa di stall kamu, pastikan ke saya mana yang janjinya harus rilis sore ini dan mana yang masih bisa ditunda?`},
    {id:'LA',text:`Saya akan cek loading mekanik lain dan minta SA untuk negosiasi ulang jadwal rilis ke pelanggan yang kendaraannya tidak urgent.`},
-   {id:'RI',text:`Sesuai diskusi tadi, 2 mobil ringan digeser ke stall Budi. Kamu cukup fokus selesaikan 1 mobil saja dulu untuk sekarang ini.`},
+   {id:'RI',text:`Sesuai diskusi tadi, 2 mobil ringan digeser ke stall Budi. Kamu cukup fokus selesaikan 1 mobil saja sampai beres, setelah itu langsung istirahat ya.`},
    {id:'TRAP',text:`Aduh usahain aja dulu gimana caranya biar kelar. Ini kan lagi peak season operasional, jadi wajar kalau capek dikit. Gas terus!`}]},
 
  {name:'Anton',role:'Mekanik Stall 4',icon:'🛠️',mode:'chat',time:'11:20',
   intro:'Menjelang siang, Anton mengirim chat dari stall 4. Sepertinya ada masalah dengan peralatan.',
   skip:'Beberapa jam kemudian: Bapak/Ibu sudah menghubungi tim Maintenance.',
-  text:`Pak/Bu, hidrolik lift di stall nomor 4 olinya bocor, saya nggak berani pakai. Kemarin udah lapor tim Maintenance tapi belum dibenerin. Kerjaan saya antre panjang nih Pak/Bu.`,
-  react:{DE:`Iya Pak/Bu, daripada ada yang celaka. Terima kasih sudah mendukung keputusan saya.`,
-         TIK:`Setahu saya stall 6 mekaniknya lagi training Pak/Bu, jadi alatnya nganggur.`,
-         RI:`Siap Pak/Bu, saya pindah ke stall 6 sekarang. Terima kasih ya Pak/Bu, kabarnya jelas jadi saya tenang.`},
+  text:`Pak, hidrolik lift di stall nomor 4 olinya bocor, saya nggak berani pakai. Kemarin udah lapor tim Maintenance tapi belum dibenerin. Kerjaan saya antre panjang nih Pak.`,
+  react:{DE:`Iya Pak, daripada ada yang celaka. Terima kasih sudah mendukung keputusan saya.`,
+         TIK:`Setahu saya stall 6 mekaniknya lagi training Pak, jadi alatnya nganggur.`,
+         RI:`Siap Pak, saya pindah ke stall 6 sekarang. Terima kasih ya Pak, kabarnya jelas jadi saya tenang.`},
   options:[
    {id:'DE',text:`Bahaya itu kalau diteruskan. Keputusanmu untuk nggak pakai lift itu sudah sangat tepat demi keselamatan kita bersama.`},
    {id:'TIK',text:`Selain stall 4, coba pastikan apakah ada stall lain yang lagi kosong atau mekaniknya lagi cuti yang bisa kamu pakai sementara?`},
@@ -1395,24 +1585,24 @@ const SCEN=[
  {name:'Bayu',role:'Mekanik Rem',icon:'🚗',mode:'call',time:'13:40',
   intro:'Selesai makan siang, telepon masuk dari Bayu. Suaranya terdengar kesal karena ada komplain dari sopir.',
   skip:'Beberapa jam kemudian: Bapak/Ibu sudah menemui sopir dan menguji unitnya.',
-  text:`Pak/Bu, sopir unit 020 balik lagi marah-marah, katanya remnya kerasa blong. Padahal kampasnya baru saya ganti sesuai SOP. Kayaknya emang cara bawanya dia aja yang kasar!`,
-  react:{DE:`Iya Pak/Bu... kesel banget rasanya. Terima kasih Pak/Bu, udah coba untuk mengerti kondisi kami.`,
-         TIK:`Mobilnya sudah saya parkir Pak/Bu. Tekanan minyak rem sama master silinder kemarin belum sempat saya cek.`,
-         RI:`Wah, ternyata angin palsu ya Pak/Bu. Siap, kita bleeding bareng sekarang. Terima kasih Pak/Bu, sampe turun langsung buat ikut bantu.`},
+  text:`Pak, sopir unit 020 balik lagi marah-marah, katanya remnya kerasa blong. Padahal kampasnya baru saya ganti sesuai SOP. Kayaknya emang cara bawanya dia aja yang kasar!`,
+  react:{DE:`Iya Pak... kesel banget rasanya. Terima kasih Pak/Bu, udah coba untuk mengerti kondisi kami.`,
+         TIK:`Mobilnya sudah saya parkir Pak. Tekanan minyak rem sama master silinder kemarin belum sempat saya cek.`,
+         RI:`Wah, ternyata angin palsu ya Pak. Siap, kita bleeding bareng sekarang. Terima kasih Pak/Bu, sampe turun langsung buat ikut bantu.`},
   options:[
-   {id:'DE',text:`Saya mengerti kamu kesal. Nggak enak banget rasanya udah kerja sesuai SOP tapi malah dituduh macam-macam sama sopir.`},
+   {id:'DE',text:`Saya ngerti kamu kesal. Nggak enak banget rasanya udah kerja sesuai SOP tapi malah dituduh macam-macam sama sopir.`},
    {id:'TIK',text:`Mobilnya sudah aman diparkir kan? Selain kampas rem, waktu servis kemarin kita sempat cek tekanan minyak rem dan master silindernya juga nggak?`},
    {id:'LA',text:`Biar nggak debat kusir, saya akan temui sopirnya. Kita akan test drive unitnya bertiga sekarang biar sama-sama ngerasain masalahnya di mana.`},
-   {id:'RI',text:`Dari hasil test drive tadi ternyata ada angin palsu. Sopir udah mengerti dan minta maaf. Yuk kita bleeding remnya bareng-bareng sekarang.`},
+   {id:'RI',text:`Dari hasil test drive tadi ternyata ada angin palsu. Sopir udah ngerti dan minta maaf. Yuk kita bleeding remnya bareng-bareng sekarang.`},
    {id:'TRAP',text:`Udah biarin aja, sopir emang kadang suka cari-cari alasan dan bawel. Cuekin aja, kamu lanjut kerjain unit yang lain dulu.`}]},
 
  {name:'Joko',role:'Mekanik',icon:'📱',mode:'chat',time:'15:10',
   intro:'Sore hari. Joko mengirim chat berisi keluhan tentang aturan baru dari HO.',
   skip:'Hari berikutnya: Bapak/Ibu sudah membawa keluhan ini ke meeting kepala bengkel.',
-  text:`Pak/Bu, SOP baru dari HO yang mewajibkan mekanik bikin video sebelum mulai bongkar part itu ribet banget. Tangan lagi kotor kena oli disuruh pegang HP, kerjaan jadi lambat.`,
-  react:{DE:`Iya Pak/Bu, kerasa ribet banget. Terima kasih sduah mau mendengerkan.`,
-         TIK:`Ada Pak/Bu, memori HP saya sering penuh, upload-nya juga lama kalau sinyal bengkel jelek.`,
-         RI:`Wah kabar bagus Pak/Bu! Mulai besok saya pakai HP operasional dan tripod. Terima kasih sudah dibawa ke meeting 🙏`},
+  text:`Pak, SOP baru dari HO yang mewajibkan mekanik bikin video sebelum mulai bongkar part itu ribet banget. Tangan lagi kotor kena oli disuruh pegang HP, kerjaan jadi lambat.`,
+  react:{DE:`Iya Pak, kerasa ribet banget. Terima kasih sduah mau mendengerkan.`,
+         TIK:`Ada Pak, memori HP saya sering penuh, upload-nya juga lama kalau sinyal bengkel jelek.`,
+         RI:`Wah kabar bagus Pak! Mulai besok saya pakai HP operasional dan tripod. Terima kasih sudah dibawa ke meeting 🙏`},
   options:[
    {id:'DE',text:`Saya paham keluhanmu. Setiap ada SOP baru pasti butuh penyesuaian dan emang kerasa ribet di awal karena tangan kalian kotor.`},
    {id:'TIK',text:`Selain masalah tangan kotor, ada kendala teknis lain nggak? Misalnya memori HP penuh atau durasi upload-nya yang lambat?`},
@@ -1428,8 +1618,15 @@ function fit(){
   const a=document.activeElement;
   if(a&&a.tagName==='INPUT')return;
   const vw=window.innerWidth,vh=window.innerHeight;
-  const w=Math.min(vw,vh*9/16);
-  stage.style.width=w+'px';stage.style.height=vh+'px';stage.style.fontSize=(w/28)+'px';
+  if(vw/vh>=1.1){                       /* mode lebar: isi seluruh jendela (tinggi acuan 600px) */
+    stage.classList.add('wide');
+    stage.style.width=vw+'px';stage.style.height=vh+'px';
+    stage.style.fontSize=Math.max(10,Math.min(15,vh/44))+'px';
+  }else{                                 /* mode potret 9:16 */
+    stage.classList.remove('wide');
+    const w=Math.min(vw,vh*9/16);
+    stage.style.width=w+'px';stage.style.height=vh+'px';stage.style.fontSize=(w/28)+'px';
+  }
 }
 window.addEventListener('resize',fit);
 window.addEventListener('orientationchange',()=>setTimeout(fit,200));
@@ -1735,7 +1932,7 @@ async function choose(o,btn){
   }else{
     const ok=await theySay(s.react.RI,s.mode==='call',my);if(!ok)return;
     await sleep(500);if(my!==run)return;
-    divider('✅ Loop tertutup: '+s.name+' merasa didengar.',true);
+    divider('✅ Loop tertutup: '+s.name+' merasa didengar. "My Voice Matters"',true);
     Sound.level();
     await sleep(2200);if(my!==run)return;
     if(state.si+1<TOTAL){showIncoming(state.si+1);busy=false;}
@@ -2088,7 +2285,8 @@ $('btnAgain').addEventListener('click',()=>{
     for (let i = 0; i < (n || 14); i++){
       const s = document.createElement('span'); s.className = i % 3 ? 'spark' : 'star4';
       const a = Math.random() * Math.PI * 2, d = 40 + Math.random() * 70;
-      s.style.cssText = `left:${x - 5}px;top:${y - 5}px;--c:${color};--dx:${Math.cos(a) * d}px;--dy:${Math.sin(a) * d}px`;
+      const hr = gateHost.getBoundingClientRect();
+      s.style.cssText = `left:${x - hr.left - 5}px;top:${y - hr.top - 5}px;--c:${color};--dx:${Math.cos(a) * d}px;--dy:${Math.sin(a) * d}px`;
       groot.appendChild(s); setTimeout(() => s.remove(), 1200);
     }
   }
@@ -2101,7 +2299,7 @@ $('btnAgain').addEventListener('click',()=>{
     const cols = PORTALS.map(p => p.c);
     function resize(){
       const d = Math.min(window.devicePixelRatio || 1, 2);
-      W = innerWidth; H = innerHeight; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0);
+      W = gateHost.clientWidth || innerWidth; H = gateHost.clientHeight || innerHeight; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0);
       const n = Math.min(220, Math.round(W * H / 5500));
       stars = Array.from({ length:n }, () => ({ x:Math.random() * W, y:Math.random() * H * .9, r:Math.random() * 1.3 + .2, p:Math.random() * 6.3, s:.4 + Math.random() * 1.6 }));
       motes = Array.from({ length:16 }, (_, i) => ({ x:Math.random() * W, y:Math.random() * H, r:1.5 + Math.random() * 2.5, v:.1 + Math.random() * .3, c:cols[i % 4], p:Math.random() * 6.3 }));
@@ -2128,7 +2326,7 @@ $('btnAgain').addEventListener('click',()=>{
     e.preventDefault();
     const v = nameInput.value.trim().replace(/\s+/g, ' ');
     if (v.length < 2){
-      G$('#nameErr').textContent = 'Tolong tulis nama Bapak/Ibu terlebih dahulu.';
+      G$('#nameErr').textContent = 'Tulis namamu dulu ya (minimal 2 huruf).';
       nameInput.classList.remove('err'); void nameInput.offsetWidth; nameInput.classList.add('err'); vibrate(60); nameInput.focus(); return;
     }
     S.nama = v.charAt(0).toUpperCase() + v.slice(1);
@@ -2155,7 +2353,7 @@ $('btnAgain').addEventListener('click',()=>{
       s.style.cssText = `--c:${p.c};--c2:${p.c2};--soft:${p.soft};--glow:${p.glow}`;
       s.innerHTML = `
         <div class="beam"></div>
-        <div class="tap-hint">Sentuh untuk masuk</div>
+        <div class="tap-hint">Ketuk untuk masuk</div>
         <div class="pclip">
           <button class="portal" type="button" tabindex="-1" aria-label="${p.code} ${p.name}">
             <div class="frame">
@@ -2187,12 +2385,12 @@ $('btnAgain').addEventListener('click',()=>{
     await wait(480); Sound.sfx('gstamp'); vibrate(60);
     await wait(1050);
     s.classList.remove('passing', 'open'); s.classList.add('done', 'passed');
-    s.querySelector('.ps').textContent = '✓ Selesai';
+    s.querySelector('.ps').textContent = '✓ Tuntas';
     const [sx, sy] = centerOf(s.querySelector('.stamp')); sparks(sx, sy, p.c, 8);
   }
   async function gateIntro(){
     gateReady = false;
-    setLead(`Hai <b>${esc(S.nama)}</b>, gerbang CARE mulai terbuka…`);
+    setLead(`Hai <b>${esc(S.nama)}</b>, gerbang CARE sedang bangkit…`);
     const slots = G$$('.pslot');
     await wait(500);
     Sound.rumble(3.8); vibrate([200, 80, 250, 80, 300]); groot.classList.add('quake');
@@ -2202,7 +2400,7 @@ $('btnAgain').addEventListener('click',()=>{
     await wait(320 * slots.length + 1100);
     groot.classList.remove('quake');
     slots.forEach(s => { s.classList.add('settled'); s.querySelector('.portal').tabIndex = 0; });
-    for (let k = ACT; k < slots.length; k++){ slots[k].classList.add('locked'); slots[k].querySelector('.ps').textContent = 'Tertutup'; }
+    for (let k = ACT; k < slots.length; k++){ slots[k].classList.add('locked'); slots[k].querySelector('.ps').textContent = 'Tersegel'; }
     Sound.sfx('lock');
     await wait(400);
     /* gerbang 1 CONNECT dan 2 APPRECIATE: sudah tuntas */
@@ -2214,7 +2412,7 @@ $('btnAgain').addEventListener('click',()=>{
       await passPortal(k);
       await wait(350);
     }
-    setLead('Dua gerbang telah terbuka. Saatnya gerbang ketiga…');
+    setLead('Dua gerbang tuntas. Saatnya gerbang ketiga…');
     await wait(1000);
     /* gerbang 3 RESPOND: segel dibuka */
     const e = slots[ACT], P = PORTALS[ACT], [x, y] = centerOf(e.querySelector('.gate'));
@@ -2232,7 +2430,7 @@ $('btnAgain').addEventListener('click',()=>{
     e.querySelector('.ps').textContent = 'Terbuka';
     Sound.sfx('open'); sparks(x, y, P.c, 24);
     await wait(900);
-    setLead(`Gerbang <b style="color:${P.c}">RESPOND</b> terbuka. Sentuh untuk masuk, ${esc(S.nama)}!`);
+    setLead(`Gerbang <b style="color:${P.c}">RESPOND</b> terbuka. Ketuk untuk masuk, ${esc(S.nama)}!`);
     e.classList.add('ready'); gateReady = true;
   }
   function onPortal(i){
@@ -2241,7 +2439,7 @@ $('btnAgain').addEventListener('click',()=>{
     const btn = slotEl(i).querySelector('.portal');
     btn.classList.remove('wiggle'); void btn.offsetWidth; btn.classList.add('wiggle');
     Sound.sfx('click');
-    gToast(i < ACT ? `${PORTALS[i].name} sudah terbuka ✓ Lanjut ke Respond ya!` : `Gerbang ${PORTALS[i].name} masih tertutup 🔒`);
+    gToast(i < ACT ? `${PORTALS[i].name} sudah tuntas ✓ Lanjut ke Respond ya!` : `Gerbang ${PORTALS[i].name} masih tersegel 🔒`);
   }
   async function enterRespond(){
     gateReady = false;
