@@ -1111,10 +1111,10 @@ html,body{background:#E9E2D4}
 /* Pak David */
 .av{background-size:52px auto;background-position:-10px 0}
 .deb .top .av{background-size:123px auto;background-position:-24px -1px}
-#scene .drip{transform-box:fill-box;animation:drip 1.7s ease-in infinite}
-@keyframes drip{0%{transform:translateY(0);opacity:0}10%{opacity:1}85%{transform:translateY(36px);opacity:1}100%{transform:translateY(38px);opacity:0}}
+#scene .spark{transform-box:fill-box;transform-origin:center;animation:spark .8s ease-in-out infinite}
+@keyframes spark{0%,100%{opacity:1;transform:scale(1)}35%{opacity:.15;transform:scale(.8)}60%{opacity:1;transform:scale(1.25)}}
 #scene #tape{transition:opacity .6s}
-#scene .fixed .drip{display:none}
+#scene .fixed .spark,#scene .fixed .bare{display:none}
 
 /* HUD: 4 langkah + meter didengar */
 .lt{width:34px;font-size:12px}
@@ -1175,6 +1175,7 @@ html,body{background:#E9E2D4}
 .chip2.bad{background:#FDE4E0;color:#B23A28}
 .rcp p{font:800 11px/1.4 var(--fn);color:#4b4033}
 .rcp p b{color:var(--b)}
+.rcp.rc1{gap:3px;padding:6px 9px;overflow-y:auto}.rcp.rc1 h4{font-size:12.5px}.rcp.rc1 .cl{gap:3px}.rcp.rc1 .chip2{padding:2px 8px;font-size:10px}.rcp.rc1 p{font-size:10.5px;line-height:1.35}
 
 /* MG2 hapus kabut */
 .fogb{flex:1;display:flex;flex-direction:column;gap:6px;min-height:0;position:relative}
@@ -1307,83 +1308,83 @@ let PRESET=null;
 /* dipanggil halaman gerbang: sapaan & nama sudah diisi di sana */
 window.presetPlayer=(sapa,name)=>{PRESET={sapa:sapa==='Ibu'?'Ibu':'Bapak',name:String(name||'').trim().slice(0,16)};if(window.__applyPreset)window.__applyPreset()};
 
-/* =================== DATA: satu kasus bersambung (Skenario 3: lift stall 4 bocor) =================== */
+/* =================== DATA: satu kasus bersambung (Skenario 3: kabel listrik stall 4 ngelupas) =================== */
 const KEYS=['DE','TIK','LA','RI'];
 const STEP={
  DE:{no:1,n:'Dengarkan',en:'Listen',ic:'👂',c:'#3B7BE0',game:'Tangkap Info',
-   intro:'Langkah 1: **Dengarkan**. Pesan Anton itu kayak pohon penuh buah info. Tangkap yang penting ya!',
-   how:['Geser **keranjang** ke kiri-kanan (atau tombol ◀ ▶).','Tangkap buah berisi **fakta & perasaan** Anton.','Buah berisi **asumsi & penilaian** dibiarkan jatuh.'],
-   bx:['✓ Oli lift bocor','✗ Ah, cuma rembes'],
-   why:'Pahami dulu isi pesan **dan perasaan** tim, entah lewat chat atau telepon.',
-   bon:'🍎 +1 ⭐ bonus tangkapan jitu',did:'Nangkap info lift bocor & rasa takut Anton'},
+   intro:'Langkah 1: **Dengarkan**. Pesan Anton itu kayak pohon penuh buah informasi. Tangkap yang penting ya!',
+   how:['Geser **keranjang** ke kiri-kanan (atau tombol ◀ ▶).','Tangkap buah berisi **fakta & perasaan** Anton.','Biarin aja jatuh buah berisi **asumsi & penilaian**.'],
+   bx:['✓ Kabel ngelupas','✗ Ah, cuma lecet dikit'],
+   why:'Pahami dulu isi pesan **dan perasaan** anggota tim, mau lewat chat atau telepon.',
+   bon:'🍎 +1 ⭐ bonus tangkapan jitu',did:'Nangkap info kabel ngelupas & rasa takut Anton'},
  TIK:{no:2,n:'Pastikan',en:'Clarify',ic:'🔍',c:'#1FA37A',game:'Hapus Kabut',
-   intro:'Langkah 2: **Pastikan**. Masih ada yang buram nih. Yuk, tanya yang tepat!',
-   how:['Ketuk **kabut ❓** di papan fakta.','Pilih **pertanyaan** yang menggali fakta, bukan menghakimi.','**Usap** kabutnya sampai faktanya kelihatan.'],
-   bx:['✓ Mana yang paling urgent?','✗ Kok baru bilang sekarang?'],
-   why:'Kalau ada yang belum jelas, **tanyakan**. Tujuannya biar kita mengerti masalah yang sebenarnya, bukan langsung asal menghakimi.',
-   bon:'⏱ +1 ⭐ bonus cepat & tepat',did:'Nanya stall kosong, laporan Maintenance & antrean'},
+   intro:'Langkah 2: **Pastikan**. Masih ada yang belum jelas nih. Coba kita gali dengan pertanyaan yang tepat!',
+   how:['**Sentuh** kabut ❓ di papan fakta.','**Pilih** pertanyaan yang menggali fakta, bukan nyalahin.','**Usap** kabutnya sampai faktanya kelihatan.'],
+   bx:['✓ Ngelupasnya di bagian mana?','✗ Kok baru bilang sekarang?'],
+   why:'Kalau ada yang belum jelas, **tanyain** dulu. Tujuannya biar kita paham masalah yang sebenarnya, bukan langsung asal nyalahin.',
+   bon:'⏱ +1 ⭐ bonus cepat & tepat',did:'Nanya stall kosong, laporan Maintenance & kondisi kabel'},
  LA:{no:3,n:'Lakukan',en:'Act',ic:'🔧',c:'#E0A21B',game:'Sortir Tindakan',
    intro:'Langkah 3: **Lakukan**. Nggak semua harus disetujui. Pilah dulu tindakannya!',
-   how:['Kartu tindakan lewat di **ban berjalan**.','Ketuk wadah **YES / NOT NOW / NO** sebelum kartunya lewat.','Pilih yang sesuai **SOP & wewenang** leader.'],
-   bx:['✓ YES: Pasang pengaman','✗ Akalin dongkrak manual'],
-   why:'Lakukan yang sesuai **SOP & wewenang**. Jawabannya bisa **YES, NOT NOW, atau NO**. Kalau NO, sampaikan alasannya.',
+   how:['**Pilihan tindakan** lewat secara bergiliran.','Sentuh **YES / NOT NOW / NO** sebelum pilihannya lewat.','Pastikan sesuai **SOP & wewenang** kamu sebagai leader.'],
+   bx:['✓ YES: Pasang pengaman','✗ NO: Akalin pakai lakban'],
+   why:'Kerjain yang sesuai **SOP & wewenang**. Jawabannya bisa **YES, NOT NOW, atau NO**. Kalau NO, jelasin alasannya.',
    bon:'📦 +1 ⭐ bonus sortir rapi',did:'Pasang pengaman & minta perbaikan urgent'},
- RI:{no:4,n:'Kabari Hasilnya',en:'Close the Loop',ic:'📣',c:'#8A5CD6',game:'Rakit Kabar',
+ RI:{no:4,n:'Kabari Hasilnya',en:'Close the Loop',ic:'📣',c:'#8A5CD6',game:'Rangkai Kabar',
    intro:'Langkah 4: **Kabari Hasilnya**. Dua jam kemudian, Anton masih nunggu kabar...',
-   how:['Ketuk kartu untuk **menyusun pesan** update.','Isi 3 bagian: **Hasil**, **solusi sementara**, **kabar berikutnya**.','Hindari kartu **"Oke, siap"** yang bikin Anton nebak-nebak.'],
+   how:['Sentuh kartu buat **nyusun pesan** update.','Isi 3 bagian: **Hasil**, **solusi sementara**, **kabar berikutnya**.','Hindari kartu **"Oke, siap"** yang bikin Anton nebak-nebak.'],
    bx:['✓ Teknisi lagi OTW','✗ Oke, siap 👍'],
    why:'**Close the Loop**: Balik lagi ke orangnya dan kabari perkembangannya, walaupun bisa aja masalahnya **belum selesai**.',
    bon:'⏳ +1 ⭐ bonus kabar tepat waktu',did:'Kabari teknisi OTW + pindah ke stall 6'}
 };
 const ANTON={skin:'#C99067',hair:'side',hc:'#151210',shirt:'#3E6FB0'};
-const MSG0='{s}, oli hidrolik lift stall 4 bocor, saya nggak berani pakai. Kemarin udah lapor Maintenance tapi belum dibenerin.';
+const MSG0='{s}, kabel listrik di stall 4 ngelupas, tadi sempat nyetrum. Kemarin udah lapor Maintenance tapi belum dibenerin.';
 
 /* MG1: buah info */
-const GOOD=['Oli hidrolik bocor','Lift stall 4','Takut celaka','Nggak berani pakai','Udah lapor Maintenance','Belum dibenerin','Kerjaan jadi numpuk'];
-const BAD=['Ah, cuma rembes dikit','Anton cari alasan','Pakai aja dulu','Bukan urusan saya','Lebay ah'];
+const GOOD=['Kabel listrik ngelupas','Stall 4','Takut kesetrum','Nggak berani kerja','Udah lapor Maintenance','Belum dibenerin','Kerjaan jadi numpuk'];
+const BAD=['Ah, cuma lecet dikit','Anton cari alasan','Pakai aja dulu','Bukan urusan saya','Lebay ah'];
 
 /* MG2: kabut fakta */
 const FOG=[
- {t:'Stall pengganti?',ok:'Selain stall 4, ada stall lain yang lagi kosong nggak?',bad:'Kamu yakin bocor? Jangan-jangan cuma kotor oli.',
-  why:'Meragukan Anton bikin dia merasa nggak dipercaya.',fact:'"Stall 6 kosong, {s}. Mekaniknya lagi training, alatnya bisa dipake dulu."'},
- {t:'Laporan Maintenance?',ok:'Kemarin lapor ke siapa? Udah ada tiket perbaikannya belum?',bad:'Kok baru bilang ke saya sekarang sih?',
-  why:'Menyalahkan bikin Anton enggan cerita lagi.',fact:'"Udah lapor ke Pak Heri kemarin sore, tapi memang tiketnya belum dibuat."'},
- {t:'Antrean mobil?',ok:'Dari mobil yang antre, mana yang paling urgent?',bad:'Ya udah, kerjain aja semampunya.',
-  why:'Itu menutup obrolan, belum menggali fakta.',fact:'"Ada tiga mobil yang ngantri, yang harus rilis sore ini ada satu unit."'}
+  {t:'Stall pengganti?',ok:'Selain stall 4, ada stall lain yang lagi kosong nggak?',bad:'Yakin itu kabelnya? Jangan-jangan cuma salah lihat.',
+   why:'Meragukan Anton bikin dia ngerasa nggak dipercaya.',fact:'"Stall 6 kosong, {s}, kayaknya bisa dipake dulu deh."'},
+  {t:'Laporan Maintenance?',ok:'Kemarin lapor ke siapa? Udah ada tiket perbaikannya belum?',bad:'Kok baru bilang ke saya sekarang sih?',
+   why:'Nyalahin bikin Anton males cerita lagi.',fact:'"Udah lapor ke Pak Heri kemarin sore, tapi memang tiketnya belum dibuat."'},
+  {t:'Kondisi kabel?',ok:'Ngelupasnya di bagian mana? Tembaganya udah keliatan belum?',bad:'Cuma kabel doang, kerjain aja hati-hati.',
+   why:'Itu nyepelein, faktanya belum tergali.',fact:'"Ngelupasnya dekat colokan, {s}. Tembaganya udah keliatan, jadi saya nggak berani pegang."'}
 ];
 
 /* MG3: sortir tindakan */
 const SORT=[
- {t:'Pasang garis pengaman di stall 4',a:'Y',why:'**YES**: Bisa langsung dilakukan & sesuai SOP keselamatan.'},
- {t:'Akalin pakai dongkrak manual',a:'X',why:'**NO**: Nggak aman & melanggar SOP. Sampaikan alasannya ke Anton.'},
- {t:'Datangi Maintenance, minta perbaikan urgent',a:'Y',why:'**YES**: Masih wewenang leader untuk follow up ke pihak terkait.'},
- {t:'Ganti lift dengan unit baru minggu ini',a:'N',why:'**NOT NOW**: Butuh anggaran & persetujuan. Usulkan dulu, kabari keputusannya.'},
- {t:'Pindahkan kerjaan Anton ke stall 6',a:'Y',why:'**YES**: Solusi sementara yang bisa diputuskan leader.'},
- {t:'Perbaiki sendiri hidrolik liftnya',a:'X',why:'**NO**: Bukan keahlian & wewenang kita. Serahkan ke Maintenance.'}
+  {t:'Pasang garis pengaman di stall 4',a:'Y',why:'**YES**: Bisa langsung dikerjain & sesuai SOP keselamatan.'},
+  {t:'Akalin kabelnya pakai lakban',a:'X',why:'**NO**: Nggak aman & nggak sesuai SOP. Jelasin alasannya ke Anton.'},
+  {t:'Datangi Maintenance, minta perbaikan urgent',a:'Y',why:'**YES**: Masih wewenang leader buat follow up ke pihak terkait.'},
+  {t:'Ganti semua kabel bengkel minggu ini',a:'N',why:'**NOT NOW**: Butuh anggaran & persetujuan. Usulin dulu, kabari keputusannya.'},
+  {t:'Pindahin kerjaan Anton ke stall 6',a:'Y',why:'**YES**: Solusi sementara yang bisa langsung kamu putuskan sebagai leader.'},
+  {t:'Sambung sendiri kabelnya',a:'X',why:'**NO**: Bukan keahlian & wewenang kita. Serahin ke Maintenance.'}
 ];
-const BIN={Y:{n:'YES',s:'Lakukan',i:'✅',c:'#16A35C'},N:{n:'NOT NOW',s:'Nanti dulu',i:'⏳',c:'#E0A21B'},X:{n:'NO',s:'Sampaikan alasannya',i:'⛔',c:'#E5533D'}};
+const BIN={Y:{n:'YES',s:'Lakukan',i:'✅',c:'#16A35C'},N:{n:'NOT NOW',s:'Nanti dulu',i:'⏳',c:'#E0A21B'},X:{n:'NO',s:'Jelasin alasannya',i:'⛔',c:'#E5533D'}};
 
 /* MG4: kartu kabar */
 const SLOTS=['1. Hasil follow-up','2. Solusi sementara','3. Kabar berikutnya'];
 const CK=[
- {t:'Teknisi Maintenance lagi OTW ke stall 4.',s:0},
- {t:'Sementara pakai stall 6 dulu aja ya.',s:1},
- {t:'Begitu lift beres, saya kabari lagi.',s:2},
- {t:'Oke, siap 👍',s:-1,why:'Cuma "Oke, siap" bikin Anton nebak-nebak lagi.'},
- {t:'Nanti saya cek ya.',s:-1,why:'Belum ada hasilnya. Anton masih nunggu kepastian.'},
- {t:'Udah beres kok, pakai aja liftnya.',s:-1,why:'Belum benar! Kabari status apa adanya, walau masih proses.'}
+  {t:'Teknisi Maintenance lagi OTW ke stall 4.',s:0},
+  {t:'Sementara pakai stall 6 dulu aja ya.',s:1},
+  {t:'Begitu kabelnya beres, saya kabari lagi ya.',s:2},
+  {t:'Oke, siap 👍',s:-1,why:'Cuma "Oke, siap" bikin Anton nebak-nebak lagi.'},
+  {t:'Nanti saya cek ya.',s:-1,why:'Belum ada hasilnya. Anton masih nunggu kepastian.'},
+  {t:'Udah beres kok, kerja aja di stall 4.',s:-1,why:'Belum bener! Kabarin status apa adanya, walau masih proses.'}
 ];
 
 /* balasan ke Anton */
 const REPLY={
- DE:{q:MSG0,react:'Iya {s}, daripada ada yang celaka. Makasih udah dukung keputusan saya 🙏',
-   opts:[{ok:1,t:'Bahaya kalau diterusin. Keputusanmu nggak pakai lift itu udah tepat, demi keselamatan kita.'},
-         {t:'Ya udah, akalin aja pakai dongkrak manual dulu. Nunggu Maintenance kelamaan!',re:'Hmm... bahaya dong, {s}?',why:'Itu jebakan: menutup suara Anton & nggak aman.'},
-         {t:'Oke, siap 👍',re:'...Oke, {s}. (masih bingung)',why:'"Oke, siap" belum menunjukkan kita paham isi pesan & perasaannya.'}]},
- LA:{q:'Setahu saya mekanik stall 6 lagi training, {s}. Alatnya nganggur.',react:'Siap {s}, garis pengaman saya pasang sekarang! 💪',
-   opts:[{ok:1,t:'Pasang garis pengaman di stall 4 sekarang ya. Saya datangi Maintenance, minta perbaikan urgent hari ini.'},
-         {t:'Nanti saya cek kalau sempat ya.',re:'Kapan ya, {s}? 😕',why:'Belum ada tindakan nyata. Anton tetap nunggu tanpa kepastian.'},
-         {t:'Pakai aja liftnya pelan-pelan, biar kerjaan nggak numpuk.',re:'Waduh, saya takut {s}...',why:'Melanggar SOP keselamatan. Itu bukan tindakan yang tepat.'}]}
+  DE:{q:MSG0,react:'Iya {s}, daripada ada yang celaka. Makasih udah dukung keputusan saya 🙏',
+    opts:[{ok:1,t:'Bahaya kalau diterusin. Keputusanmu buat nggak kerja di situ udah bener, daripada kenapa-kenapa.'},
+          {t:'Ya udah, akalin aja pakai lakban dulu. Nunggu Maintenance kelamaan!',re:'Hmm... bahaya dong, {s}?',why:'Itu jebakan: nutup suara Anton & nggak aman.'},
+          {t:'Oke, siap 👍',re:'...Oke, {s}. (masih bingung)',why:'"Oke, siap" belum nunjukin kalau kita paham isi pesan & perasaannya.'}]},
+  LA:{q:'Setahu saya stall 6 kosong, {s}.',react:'Siap {s}, garis pengaman saya pasang sekarang! 💪',
+    opts:[{ok:1,t:'Pasang garis pengaman di stall 4 sekarang ya. Saya datangi Maintenance, minta perbaikan urgent hari ini.'},
+          {t:'Nanti saya cek kalau sempat ya.',re:'Kapan ya, {s}? 😕',why:'Belum ada tindakan nyata. Anton tetap nunggu tanpa kepastian.'},
+          {t:'Kerja aja dulu di stall 4, hati-hati aja, biar kerjaan nggak numpuk.',re:'Waduh, saya takut {s}...',why:'Ini ngelanggar SOP keselamatan, jadi bukan langkah yang pas.'}]}
 };
 const PRAISE=['Mantap, {p}! 🎉','Pas banget, {p}!','Keren! Anton jadi lega.'];
 
@@ -1478,7 +1479,7 @@ const SFX=Snd.S;
 $('#bgmBtn').addEventListener('click',e=>{e.stopPropagation();Snd.init();const on=Snd.toggle();$('#bgmBtn').classList.toggle('off',!on);SFX.tap()});
 
 
-/* =================== SCENE: bengkel, stall 4 bocor, 4 pos DE-TIK-LA-RI, Pak David =================== */
+/* =================== SCENE: bengkel, stall 4 kabel ngelupas, 4 pos DE-TIK-LA-RI, Pak David =================== */
 const HX=[178,222,266,310];
 function miniMan(){return `<g><ellipse cy="1" rx="9" ry="2.5" fill="rgba(0,0,0,.18)"/><rect x="-5" y="-12" width="4" height="12" rx="2" fill="#5A3A30"/><rect x="1" y="-12" width="4" height="12" rx="2" fill="#5A3A30"/>
   <rect x="-7" y="-26" width="14" height="16" rx="4" fill="#7A3E36"/><rect x="-7" y="-21" width="14" height="2.4" fill="#D9DEE4"/><circle cy="-31" r="6" fill="#F6BFA0"/><path d="M-6 -33 C-6 -40 6 -40 6 -33 C3 -36 -3 -36 -6 -33Z" fill="#2A2730"/></g>`}
@@ -1497,8 +1498,8 @@ function buildScene(){
     <circle cx="58" cy="148" r="9" fill="#1C2128"/><circle cx="58" cy="148" r="3.6" fill="#8C97A6"/><circle cx="114" cy="148" r="9" fill="#1C2128"/><circle cx="114" cy="148" r="3.6" fill="#8C97A6"/>
     <rect x="27" y="156" width="106" height="6" rx="3" fill="#B8860B"/>
     <rect x="76" y="162" width="8" height="10" rx="2" fill="#6B5A2A"/>
-    <ellipse class="drip" cx="80" cy="176" rx="2.6" ry="3.6" fill="#2B2B33"/>
-    <ellipse cx="80" cy="199" rx="30" ry="4" fill="#2B2B33" opacity=".75"/><ellipse cx="72" cy="198" rx="8" ry="1.2" fill="#6A6F80" opacity=".6"/>
+    <path d="M34 90 C28 110 42 126 33 147" fill="none" stroke="#2B2B33" stroke-width="3" stroke-linecap="round"/><path class="bare" d="M33 140 L33 149" stroke="#F28B2E" stroke-width="2" stroke-linecap="round"/><path class="spark" d="M29 150 L35 153 L31 155 L37 162 L30 158 L33 157 Z" fill="#FFE27A" stroke="#F4B81F" stroke-width=".7" stroke-linejoin="round"/>
+    <ellipse cx="80" cy="199" rx="30" ry="4" fill="#2B2B33" opacity=".25"/>
     <g id="tape" opacity="0">${[0,1,2,3,4,5,6,7,8,9].map(k=>`<rect x="${6+k*15}" y="172" width="15" height="7" fill="${k%2?'#2A2F38':'#F4B81F'}"/>`).join('')}
      <path d="M6 168 V200 M154 168 V200" stroke="#E2353C" stroke-width="3"/></g>
    </g>
@@ -1535,7 +1536,7 @@ function splitChars(root){const sp=[];const walk=n=>[...n.childNodes].forEach(c=
 function typeIn(spans){let i=0,tm,res,done=false;const p=new Promise(r=>res=r);
   const step=()=>{if(i>=spans.length){done=true;res();return}const s=spans[i];s.classList.add('on');if(i%2===0&&s.textContent.trim())SFX.blip();i++;tm=setTimeout(step,/[.,!?]/.test(s.textContent)?120:16)};step();
   return{p,finish(){clearTimeout(tm);spans.forEach(s=>s.classList.add('on'));i=spans.length;if(!done){done=true;res()}},get done(){return done}}}
-function bubHTML(text,live){return`<div class="who"><span class="av"></span>Pak David</div><div class="tx">${fmt(text)}</div>${live?'':'<span class="nx">▼ Ketuk</span>'}`}
+function bubHTML(text,live){return`<div class="who"><span class="av"></span>Pak David</div><div class="tx">${fmt(text)}</div>${live?'':'<span class="nx">▼ Sentuh</span>'}`}
 function popBub(){bub.classList.remove('show');void bub.offsetWidth;bub.classList.add('show')}
 async function say(text,mood,teach){
   raka(mood||'nod');bub.className='';bub.innerHTML=bubHTML(text);popBub();
@@ -1606,20 +1607,20 @@ function setMood(n){S.mood=n;$('#mf').textContent=MOODS[n];$('#mb').style.width=
 async function chatIntro(){
   openPanel(head('📱 CHAT MASUK','!','Pesan dari **Anton**','🔧 Stall 4')+
    `<div class="chat" id="ch"><div class="chead"><span class="ava">${person(ANTON,'s')}</span><div><b>Anton</b><small>● Mekanik Stall 4 · online</small></div></div></div>
-    <div class="prow" style="min-height:22px"><div class="pt" style="min-height:0;justify-content:center;width:100%">👆 Ketuk layar untuk lanjut</div></div>`,true);
+    <div class="prow" style="min-height:22px"><div class="pt" style="min-height:0;justify-content:center;width:100%">👆 Sentuh layar untuk lanjut</div></div>`,true);
   const ch=$('#ch');
   const add=(cls,html,who)=>{const e=h('div',cls,(who?`<small>${esc(who)}</small>`:'')+html,ch);e.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:320,easing:'ease-out'});SFX.pop();return e};
   await sleep(350);add('cm in',fmt(MSG0),'Anton · 08.10');
-  await say('Barusan **Anton**, mekanik stall 4, kirim chat. Lift stall-nya bocor!','nod',true);
+  await say('**Anton**, mekanik stall 4, barusan ada kirim chat. Kabel listrik di stall-nya ngelupas!','nod',true);
   add('cm out','Oke, siap 👍','Kamu · 08.12');await sleep(700);
   add('cdv','⏳ 3 hari kemudian…');await sleep(700);
-  add('cm in',fmt('{s}... gimana kabar lift-nya? Apa udah ada info soal perbaikan lift-nya?'),'Anton · 10.30');
+  add('cm in',fmt('{s}... gimana? Apa udah ada info soal perbaikannya?'),'Anton · 10.30');
   await say('Kalau cuma dibalas **"Oke, siap"** terus nggak ada kabar, Anton jadi **nebak-nebak** dan merasa nggak didengar.','nod');
   await say('Yuk, kita ulang dengan cara yang lebih baik!','jump');
 }
 function manifest(){openPanel(head('📋','!','Misi hari ini: **DE-TIK-LA-RI**','🎮 4')+
   `<div class="mf">${KEYS.map((k,i)=>`<div><span class="mi" style="--c:${STEP[k].c}">${STEP[k].ic}</span><b>${i+1}. ${STEP[k].n}</b><small>🎮 ${STEP[k].game}</small></div>`).join('')}</div>
-   <div class="prow" style="min-height:22px"><div class="pt" style="min-height:0;justify-content:center;width:100%">👆 Ketuk layar untuk lanjut</div></div>`,true)}
+   <div class="prow" style="min-height:22px"><div class="pt" style="min-height:0;justify-content:center;width:100%">👆 Sentuh layar untuk lanjut</div></div>`,true)}
 
 /* ---------- petunjuk singkat sebelum tiap mini game ---------- */
 function brief(k){const T=STEP[k];return new Promise(res=>{
@@ -1649,8 +1650,8 @@ async function mgCatch(){
       <rect x="-40" y="-21" width="80" height="7" rx="3.5" fill="#A86E35"/>
      </g>
    </svg>
-   <div class="prow"><button class="bt mv" id="mvL" aria-label="Geser kiri">◀</button><div class="pt" id="pt">Geser keranjangnya untuk tangkap info-info yang penting!</div><button class="bt mv" id="mvR" aria-label="Geser kanan">▶</button></div>`);
-  remark('Tangkap info dari Anton: **fakta & perasaannya**. Asumsi biarkan jatuh ya, {p}!','nod');
+   <div class="prow"><button class="bt mv" id="mvL" aria-label="Geser kiri">◀</button><div class="pt" id="pt">Geser keranjangnya buat nangkap info-info yang penting!</div><button class="bt mv" id="mvR" aria-label="Geser kanan">▶</button></div>`);
+  remark('Tangkap info dari Anton: **fakta & perasaannya**. Asumsi biarin jatuh aja ya, {p}!','nod');
   const svg=$('#cv'),fr=$('#fr'),bkt=$('#bkt'),cnt=$('.cnt',panel);
   const W=318,H=232;let bx=159,tx=159,dir=0,moved=false;
   const items=shuffle([...GOOD.map(t=>({t,g:1})),...BAD.map(t=>({t,g:0}))]);
@@ -1687,7 +1688,7 @@ async function mgCatch(){
           else{badC.push(f.it.t);SFX.no();floatText(p.x,p.y,'✗ Itu asumsi!','#E5533D');msg(`"${f.it.t}" itu **asumsi/penilaian**, bukan info dari Anton.`,0);
             bkt.animate([{transform:`translate(${bx}px,206px) rotate(0)`},{transform:`translate(${bx}px,206px) rotate(-8deg)`},{transform:`translate(${bx}px,206px) rotate(6deg)`},{transform:`translate(${bx}px,206px) rotate(0)`}],{duration:380})}
           cnt.textContent=`🍎 ${caught.size}/7`;continue}
-        if(f.y>246){f.g.remove();live.splice(i,1);if(f.it.g){msg(`Terlewat: **${f.it.t}**. Fokus dengarkan ya!`,0)}}}
+        if(f.y>246){f.g.remove();live.splice(i,1);if(f.it.g){msg(`Terlewat: **${f.it.t}**. Fokus dengerin ya!`,0)}}}
       if(idx>=items.length&&!live.length){res();return}
       requestAnimationFrame(frame)};
     requestAnimationFrame(frame)});
@@ -1696,18 +1697,18 @@ async function mgCatch(){
   if(bonus){SFX.level();burst(10)}
   /* rekap: apa yang benar-benar didengar */
   openPanel(head('👂 DENGARKAN','1','Yang kamu tangkap dari Anton',`🍎 ${g}/7`)+
-   `<div class="rcp"><h4>Info penting (${g}/7)</h4><div class="cl">${GOOD.map(t=>`<span class="chip2 ${caught.has(t)?'':'miss'}">${caught.has(t)?'✓':'○'} ${esc(t)}</span>`).join('')}</div>
+   `<div class="rcp rc1"><h4>Info penting (${g}/7)</h4><div class="cl">${GOOD.map(t=>`<span class="chip2 ${caught.has(t)?'':'miss'}">${caught.has(t)?'✓':'○'} ${esc(t)}</span>`).join('')}</div>
      ${b?`<h4>Asumsi yang ikut tertangkap</h4><div class="cl">${badC.map(t=>`<span class="chip2 bad">✗ ${esc(t)}</span>`).join('')}</div>`:''}
-     <p>Jadi, intinya: Lift stall 4 <b>bocor & berbahaya</b>, Anton <b>takut celaka</b>, sudah lapor tapi <b>belum ditangani</b>, dan kerjaannya bisa jadi <b>numpuk</b>.</p></div>
+     <p>Intinya: Ada kabel yang <b>ngelupas & berbahaya</b>. Anton <b>takut kesetrum</b>. Udah lapor tapi <b>belum ditangani</b>.</p></div>
     <div class="prow"><button class="bt wide" id="nx">Balas Anton 💬</button></div>`);
-  remark(bonus?'Luar biasa, {p}! **+1 ⭐ bonus** 🍎':'Oke! Sekarang kita balas Anton dengan menunjukkan kita **paham**.','jump');
+  remark(bonus?'Luar biasa, {p}! **+1 ⭐ bonus** 🍎':'Oke! Sekarang kita balas Anton dan tunjukin kalau kita **paham**.','jump');
   if(bonus)floatAt($('.rcp',panel),'+1 ⭐','#B07A00');
   hintLater(()=>hintTap($('#nx')),3000);
   await new Promise(r=>$('#nx').onclick=()=>{hintOff();SFX.tap();r()});
   return bonus;
 }
 
-/* ---------- BALAS ANTON: tarik/ketuk kartu balasan (gaya serah paket Video 7) ---------- */
+/* ---------- BALAS ANTON: tarik/sentuh kartu balasan (gaya serah paket Video 7) ---------- */
 async function reply(k){
   const R=REPLY[k],T=STEP[k];
   const opts=shuffle(R.opts);
@@ -1715,7 +1716,7 @@ async function reply(k){
    `<div class="door" id="dr"><div class="frame"><div class="boss" id="bs">${person(ANTON,'s')}</div><div class="plate">Anton</div></div>
      <div class="quote2"><span class="qw">💬 Anton · Mekanik Stall 4</span><p id="qq">${fmt(R.q)}</p></div></div>
     <div class="bag rp" id="bag">${opts.map((o,i)=>`<button class="pk rc2" data-i="${i}">${fmt(o.t)}</button>`).join('')}</div>
-    <div class="prow" style="min-height:30px"><div class="pt" id="pt">Tarik balasan ke Anton atau cukup ketuk.</div></div>`);
+    <div class="prow" style="min-height:30px"><div class="pt" id="pt">Tarik balasan ke Anton atau cukup disentuh pilihan jawabannya.</div></div>`);
   const dr=$('#dr'),bs=$('#bs'),qq=$('#qq'),pks=$$('.pk',panel);
   let tries=0,busy=false;
   const showHint=()=>{const c=pks.find(p=>!p.classList.contains('x'));if(c)hintDrag(c,bs)};
@@ -1739,7 +1740,7 @@ async function reply(k){
       pk.classList.remove('lift');pk.classList.add('x');
       bs.innerHTML=person(ANTON,'s');dr.classList.remove('shk');void dr.offsetWidth;dr.classList.add('shk');SFX.no();raka('nod');
       qq.className='ans bad';qq.innerHTML=fmt('"'+o.re+'"');
-      msg(o.why,0);remark(tries>=2?'Coba pilih yang **'+T.n.toLowerCase()+'**: '+(k==='DE'?'tunjukkan kamu paham isi & perasaannya.':'ada tindakan nyata sesuai SOP.'):'Belum pas, {p}. Coba lihat lagi pesan Anton ya.','nod');
+      msg(o.why,0);remark(tries>=2?'Coba pilih yang **'+T.n.toLowerCase()+'**: '+(k==='DE'?'tunjukin kamu paham isi & perasaannya.':'ada tindakan nyata sesuai SOP.'):'Belum pas, {p}. Coba lihat lagi pesan Anton ya.','nod');
       setTimeout(()=>{if(!qq.isConnected)return;qq.className='';qq.innerHTML=fmt(R.q)},1800);
       busy=false;hintLater(showHint,4500)};
     pks.forEach(pk=>{
@@ -1753,7 +1754,7 @@ async function reply(k){
         if(!was){deliver(pk);return}
         const p=ptStage(e.clientX,e.clientY),fr={x:p.x-115,y:p.y-24,w:230,h:48};ghost.remove();ghost=null;
         if(e.type!=='pointercancel'&&overDoor(e.clientX,e.clientY))deliver(pk,fr);
-        else{pk.classList.remove('lift');SFX.tap();msg('Tarik balasannya sampai ke **Anton** atau cukup ketuk.');hintLater(showHint,2500)}};
+        else{pk.classList.remove('lift');SFX.tap();msg('Tarik balasannya sampai ke **Anton** atau cukup disentuh pilihan jawabannya.');hintLater(showHint,2500)}};
       pk.addEventListener('pointerup',end);pk.addEventListener('pointercancel',end);
       pk.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!busy){e.preventDefault();e.stopPropagation();deliver(pk)}});
     });
@@ -1765,10 +1766,10 @@ async function mgFog(){
   const LIM=50;
   openPanel(head('🔍 PASTIKAN','2','Pilih **pertanyaan** yang pas','❓ 0/3')+
    `<div class="fogb" id="fb">${FOG.map((f,i)=>`<div class="fc" data-i="${i}"><div class="fin"><span class="fq">❓ ${esc(f.t)} · jawab Anton:</span><span class="ff">${fmt(f.fact)}</span></div>
-      <div class="fog">${Array.from({length:16},()=>`<span class="pf" style="left:${rand(4,96).toFixed(1)}%;top:${rand(8,92).toFixed(1)}%;width:${rand(46,72).toFixed(0)}px;height:${rand(46,72).toFixed(0)}px"></span>`).join('')}<span class="lab">❓ ${esc(f.t)}<em>Ketuk</em></span></div></div>`).join('')}
+      <div class="fog">${Array.from({length:16},()=>`<span class="pf" style="left:${rand(4,96).toFixed(1)}%;top:${rand(8,92).toFixed(1)}%;width:${rand(46,72).toFixed(0)}px;height:${rand(46,72).toFixed(0)}px"></span>`).join('')}<span class="lab">❓ ${esc(f.t)}<em>Sentuh</em></span></div></div>`).join('')}
      <div class="qs" id="qs"></div></div>
     <div class="prow" style="min-height:34px"><div class="tbar"><i id="tb"></i></div><div class="pt" id="pt" style="flex:none;min-height:0">⏱ ${LIM} dtk</div></div>`);
-  remark('Ada 3 hal yang masih **buram**. Ketuk kabutnya, lalu pilih pertanyaan yang **menggali fakta**.','nod');
+  remark('Ada 3 hal yang masih **buram**. Sentuh kabutnya, lalu pilih pertanyaan yang **menggali fakta**.','nod');
   const cards=$$('.fc',panel),qs=$('#qs'),tb=$('#tb'),pt=$('#pt'),cnt=$('.cnt',panel);
   let mistakes=0,doneN=0,active=null;const t0=performance.now();let timer=0,over=false;
   const tick=()=>{const t=(performance.now()-t0)/1000,left=Math.max(0,LIM-t);tb.style.transform=`scaleX(${left/LIM})`;
@@ -1786,7 +1787,7 @@ async function mgFog(){
           msg('Pertanyaan pas! Sekarang **usap kabutnya** 👆',1);remark('Nah, itu pertanyaan yang **menggali**.','jump');
           setTimeout(()=>{if(c.classList.contains('rub'))hintDrag2(c)},500)}
         else{mistakes++;SFX.no();b.classList.add('x');c.classList.remove('shk');void c.offsetWidth;c.classList.add('shk');raka('nod');
-          msg(f.why,0);remark('Hmm, pertanyaan itu bikin Anton **defensif**. Coba yang lain ya.','nod')}})};
+          msg(f.why,0);remark('Hmm, pertanyaan itu bikin Anton **merasa disudutkan**. Coba yang lain ya.','nod')}})};
     const hintDrag2=c=>{const r=rectStage(c);hint.classList.add('drag');hint.style.display='block';const y=r.y+r.h/2;
       if(hintAnim)hintAnim.cancel();hintAnim=hint.animate([{transform:`translate(${r.x+r.w*.2}px,${y}px)`},{transform:`translate(${r.x+r.w*.8}px,${y-8}px)`},{transform:`translate(${r.x+r.w*.3}px,${y+8}px)`}],{duration:1400,iterations:Infinity,direction:'alternate',easing:'ease-in-out'})};
     const rub=(c,e)=>{const pr=$$('.pf:not(.go)',c);if(!pr.length)return;let n=0;
@@ -1812,7 +1813,7 @@ async function mgFog(){
       if(bonus){burst(10);floatAt($('#fb'),'+1 ⭐','#B07A00')}
       openPanel(head('🔍 PASTIKAN','2','Fakta yang sudah jelas','❓ 3/3')+
        `<div class="rcp"><h4>Hasil bertanya ke Anton</h4>${FOG.map(f=>`<p>✅ <b>${esc(f.t)}</b> ${fmt(f.fact)}</p>`).join('')}
-         <p style="margin-top:2px">Pertanyaan yang tepat bikin kita <b>mengerti masalah sebenarnya</b>, tanpa bikin Anton merasa disalahkan.</p></div>
+         <p style="margin-top:2px">Pertanyaan yang pas bikin kita <b>paham masalah sebenarnya</b>, tanpa bikin Anton ngerasa disalahin.</p></div>
         <div class="prow"><button class="bt wide" id="nx">Lanjut ▶</button></div>`);
       hintLater(()=>hintTap($('#nx')),3000);
       $('#nx').onclick=()=>{hintOff();SFX.tap();res({st,b:bonus})}};
@@ -1825,8 +1826,8 @@ async function mgSort(){
    `<div class="belt" id="belt"><span class="bl">SORTIR TINDAKAN ▸▸</span></div>
     <div class="bins">${Object.keys(BIN).map(k=>`<button class="bin" data-k="${k}" style="--c:${BIN[k].c}"><i>${BIN[k].i}</i>${BIN[k].n}<small>${BIN[k].s}</small></button>`).join('')}</div>
     <div class="sl" id="sl">${SORT.map(()=>'<i></i>').join('')}</div>
-    <div class="prow" style="min-height:44px"><div class="pt" id="pt">Ketuk wadah yang pas sebelum kartunya lewat.</div></div>`);
-  remark('Sesuai **SOP & wewenang**? Jawabannya bisa **YES**, **NOT NOW**, atau **NO** (pakai alasan).','nod');
+    <div class="prow" style="min-height:44px"><div class="pt" id="pt">Pilih yang pas sebelum kartunya lewat.</div></div>`);
+  remark('Sesuai **SOP & wewenang**? Jawabannya bisa **YES**, **NOT NOW**, atau **NO** (kasih alasannya).','nod');
   const belt=$('#belt'),bins=$$('.bin',panel),sl=$$('#sl i'),cnt=$('.cnt',panel);
   let mistakes=0;
   for(let i=0;i<SORT.length;i++){
@@ -1864,13 +1865,13 @@ async function mgSort(){
     card.remove();belt.classList.remove('stop');
     const r=rectStage(target);floatText(r.x+r.w/2,r.y,ok?'Tepat! ✓':(decided==='miss'?'Terlewat!':'Kurang pas'),ok?'#16A35C':'#E5533D');
     msg((ok?'':decided==='miss'?'Terlewat. ':'Seharusnya ')+it.why,ok?1:0);
-    if(!ok)remark(decided==='miss'?'Wah, kartunya lewat. Ayo lebih sigap, {p}!':'Hmm, seharusnya **'+BIN[it.a].n+'**. Lihat alasannya ya.','nod');
+    if(!ok)remark(decided==='miss'?'Wah, kartunya lewat. Ayo lebih sigap, {p}!':'Hmm, seharusnya **'+BIN[it.a].n+'**. Liat alasannya ya.','nod');
     else if(i%2)remark(['Pas! Sesuai wewenang kita.','Betul, {p}!','Mantap, tindakannya jelas.'][i%3],'jump');
     cnt.textContent=`📋 ${i+1}/6`;
     await sleep(ok?1300:2600);
   }
   const st=mistakes===0?3:mistakes===1?2:1,bonus=mistakes<=1;
-  remark(bonus?'Sortir rapi, {p}! **+1 ⭐ bonus** 📦':'Oke! Sekarang sampaikan tindakannya ke Anton.','jump');
+  remark(bonus?'Sortir rapi, {p}! **+1 ⭐ bonus** 📦':'Oke! Sekarang kasih tau Anton soal tindakannya.','jump');
   if(bonus){burst(10);floatAt(belt,'+1 ⭐','#B07A00')}
   await sleep(1300);
   return{st,bonus};
@@ -1880,16 +1881,16 @@ async function mgSort(){
 async function mgCompose(){
   const LIM=40;
   const cards=shuffle(CK);
-  openPanel(head('📣 KABARI','4','Susun **kabar** untuk Anton','📝 0/3')+
+  openPanel(head('📣 KABARI','4','Susun **kabar** buat Anton','📝 0/3')+
    `<div class="wait"><span>⏳ Anton nunggu kabar</span><div class="tbar"><i id="tb"></i></div></div>
     <div class="draft"><span class="to">✉️ Untuk: Anton · Stall 4</span>${SLOTS.map((s,i)=>`<div class="slot" data-s="${i}">${esc(s)}</div>`).join('')}</div>
     <div class="cards">${cards.map((c,i)=>`<button class="cd" data-i="${i}">${esc(c.t)}</button>`).join('')}</div>
-    <div class="prow" style="min-height:44px"><button class="bt" id="send" disabled>📣 Kirim</button><div class="pt" id="pt">Ketuk kartu yang pas untuk tiap bagian.</div></div>`);
-  remark('Lift-nya **belum selesai** diperbaiki, tapi Anton tetap perlu **dikabari**. Susun pesannya!','nod');
+    <div class="prow" style="min-height:44px"><button class="bt" id="send" disabled>📣 Kirim</button><div class="pt" id="pt">Sentuh kartu yang pas buat tiap bagian.</div></div>`);
+  remark('Kabelnya **belum selesai** diperbaiki, tapi Anton tetap perlu **dikabarin**. Susun pesannya!','nod');
   const tb=$('#tb'),slots=$$('.slot',panel),cds=$$('.cd',panel),send=$('#send'),cnt=$('.cnt',panel);
   let mistakes=0,filled=0,raf=0;const t0=performance.now();let late=false;
   const tick=()=>{const t=(performance.now()-t0)/1000,left=Math.max(0,LIM-t);tb.style.transform=`scaleX(${left/LIM})`;
-    if(left<=0&&!late){late=true;msg('Anton sudah nunggu lama... tetap kirim kabarnya ya!',0)}
+    if(left<=0&&!late){late=true;msg('Anton udah nunggu lama... tetap kirim kabarnya ya!',0)}
     raf=requestAnimationFrame(tick)};tick();
   hintLater(()=>{const c=cds.find(d=>cards[+d.dataset.i].s===0);if(c)hintTap(c)},1200);
   await new Promise(res=>{
@@ -1900,8 +1901,8 @@ async function mgCompose(){
       const a=rectStage(d),b=rectStage(sl);const g=d.cloneNode(true);g.style.cssText=`position:absolute;left:0;top:0;width:${a.w}px;z-index:5;pointer-events:none`;fx.appendChild(g);d.classList.add('used');SFX.pop();
       await g.animate([{transform:`translate(${a.x}px,${a.y}px)`},{transform:`translate(${b.x}px,${b.y}px) scale(.9)`,opacity:.6}],{duration:380,easing:'cubic-bezier(.3,.7,.4,1)',fill:'forwards'}).finished.catch(()=>{});g.remove();
       sl.textContent=c.t;sl.classList.add('fill');filled++;cnt.textContent=`📝 ${filled}/3`;SFX.ok();
-      msg(['**Hasil follow-up** sudah ditulis.','**Solusi sementara** biar kerjaan tetap jalan.','**Jangan lupa untuk kabari hasilnya**: Loop tetap terbuka sampai tuntas.'][c.s],1);
-      if(filled===3){send.disabled=false;send.classList.add('pulse');remark('Pesannya lengkap! Ketuk **📣 Kirim**.','jump');hintLater(()=>hintTap(send),900)}});
+      msg(['**Hasil follow-up** udah ditulis.','**Solusi sementara** biar kerjaan tetap jalan.','**Jangan lupa kabarin hasilnya**: Loop baru ketutup kalau udah tuntas.'][c.s],1);
+      if(filled===3){send.disabled=false;send.classList.add('pulse');remark('Pesannya lengkap! Sentuh **📣 Kirim**.','jump');hintLater(()=>hintTap(send),900)}});
     send.onclick=()=>{hintOff();SFX.tap();res()};
   });
   cancelAnimationFrame(raf);
@@ -1946,7 +1947,7 @@ function startScreen(){return new Promise(res=>{
   $('.sRaka',s).animate([{transform:'translateX(-50%) translateY(220px)'},{transform:'translateX(-50%) translateY(-10px)',offset:.7},{transform:'translateX(-50%)'}],{duration:900,delay:200,easing:'cubic-bezier(.22,1,.36,1)',fill:'backwards'});
   const card=$('#sc0',s);
   card.animate([{opacity:0,transform:'translateY(80px)'},{opacity:1,transform:'none'}],{duration:700,delay:400,easing:'cubic-bezier(.22,1,.36,1)',fill:'backwards'});
-  const DS='<div class="ds">Salam kenal, saya David. <br>Yuk, ikut saya tangani kendala di bengkel ya.</div>';
+  const DS='<div class="ds">Salam kenal, saya David. Supervisor di bengkel ini. <br>Yuk, ikut saya nanganin kendala di bengkel sebagai seorang Supervisor ya.</div>';
   const go=async()=>{Snd.init();SFX.win();await wipe(async()=>{s.remove();fit(true)});res()};
   const renderPreset=()=>{S.sapa=PRESET.sapa;S.name=PRESET.name||'Leader';
     card.innerHTML=`<div class="hi">Halo, <b>${esc(P())}</b>! 👋</div>${DS}<button class="bt wide" id="go">Mulai Gamifikasi ▶</button><div class="snd">🎧 Nyalakan suara biar makin seru</div>`;
@@ -1959,7 +1960,7 @@ function startScreen(){return new Promise(res=>{
       <div class="snd">🎧 Nyalakan suara biar makin seru</div>`;
     const inp=$('#nm',card),gb=$('#go',card),pv=$('#pv',card);
     const upd=()=>{const n=inp.value.trim().replace(/\s+/g,' ');gb.disabled=!(n&&S.sapa);
-      pv.innerHTML=S.sapa&&n?`Pak David akan memanggil <b>${esc(S.sapa+' '+n)}</b> 👋`:!S.sapa?'Pilih sapaan: Bapak atau Ibu.':'Sekarang tulis nama panggilan.'};
+      pv.innerHTML=S.sapa&&n?`Pak David bakal manggil kamu <b>${esc(S.sapa+' '+n)}</b> 👋`:!S.sapa?'Pilih sapaan: Bapak atau Ibu.':'Sekarang tulis nama panggilan.'};
     $$('.sapa button',card).forEach(b=>b.onclick=()=>{S.sapa=b.dataset.v;$$('.sapa button',card).forEach(x=>x.classList.toggle('on',x===b));SFX.pop();upd();if(!inp.value.trim())inp.focus()});
     inp.addEventListener('input',upd);
     const start=()=>{const n=inp.value.trim().replace(/\s+/g,' ');if(!n||!S.sapa)return;S.name=n.slice(0,16);inp.blur();go()};
@@ -1981,9 +1982,9 @@ function debrief(){
     [...c.children].forEach((e,i)=>e.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:420,delay:220+i*80,fill:'backwards'}));return c};
   const c1=show(`<div class="top"><div><span class="chipM">✓ LOOP TERTUTUP</span><h2>Hebat, ${esc(P())}!</h2><div style="font:800 11px var(--fn);color:var(--mut)">Anton: "Suara saya didengar" 😄</div></div></div>
     <div class="score"><b>⭐ ${tot} / 16</b><div class="tr"><i></i></div></div>
-    <div class="lead">Ini <b>4 perilaku RESPOND</b> yang tadi kamu praktikkan:</div>
+    <div class="lead">Ini <b>4 perilaku RESPOND</b> yang tadi kamu terapin:</div>
     <div class="gr">${KEYS.map((k,i)=>{const T=STEP[k];return`<div style="--c:${T.c}"><span class="L">${k}</span><div style="flex:1"><h4>${esc(T.n)} · ${esc(T.en)}<small>${'⭐'.repeat(S.stars[i])}${'☆'.repeat(3-S.stars[i])}</small></h4><p>${esc(T.why.replace(/\*\*/g,''))}</p></div></div>`}).join('')}</div>
-    <div class="dvRow"><img class="dvImg" src="${IMG}" alt="Pak David"><div class="dvBub"><b class="dvNm">Pak David</b><b>"I Listen to You"</b> tidak sama dengan <br> <b>"I Agree With You"</b>. Kemudian, ingat untuk Close the Loop saat memberikan RESPOND. Berikutnya adalah Gerbang <b>EMPOWER, I Trust You</b>. Sampai ketemu! 👋</div></div>
+    <div class="dvRow"><img class="dvImg" src="${IMG}" alt="Pak David"><div class="dvBub"><b class="dvNm">Pak David</b><b>"I Listen to You"</b> nggak sama dengan <br> <b>"I Agree With You"</b>. Terus, jangan lupa Close the Loop waktu kamu kasih RESPOND. <br>Berikutnya, Gerbang <b>EMPOWER, I Trust You</b>. Sampai ketemu! 👋</div></div>
     <button class="bt wide" id="again">↺ Ulangi Gamifikasi</button>`,'d2');
   setTimeout(()=>{$('.score .tr i',c1).style.width=(tot/16*100)+'%'},50);
   setTimeout(()=>{SFX.win();burst(40)},500);
@@ -1998,7 +1999,7 @@ async function main(){
   scene.classList.remove('off');setHud(true);setSlots(-1);setMood(0);
   $('#raka').animate([{transform:'translateX(-130%)'},{transform:'translateX(6%)',offset:.75},{transform:'none'}],{duration:800,easing:'cubic-bezier(.22,1,.36,1)'});
   await sleep(700);
-  await say('Halo, {p}! Ada lift stall yang bocor, bantu Anton agar kendala yang dihadapi terasa didengar ya.','jump',true);
+  await say('Halo, {p}! Ada kabel listrik di stall yang ngelupas nih. Bantu Anton biar dia ngerasa didengar ya.','jump',true);
   await chatIntro();
   manifest();
   await say('Biar Anton merasa **didengar**, kita pakai 4 langkah: **DE-TIK-LA-RI**.','nod');
@@ -2021,7 +2022,7 @@ async function main(){
   }
   setSlots(4);setTarget(-1);moveMini(-1);
   await say('Loop tertutup, {p}! 🎉 Anton sekarang merasa **suaranya didengar**.','jump');
-  await say('Yuk, kita ulas kembali inti dari permainannya.','nod');
+  await say('Yuk, kita ulas lagi inti dari permainannya.','nod');
   await wipe(async()=>{hideBub()});
   debrief();
 }
@@ -2400,7 +2401,7 @@ main().catch(e=>console.error(e));
       s.style.cssText = `--c:${p.c};--c2:${p.c2};--soft:${p.soft};--glow:${p.glow}`;
       s.innerHTML = `
         <div class="beam"></div>
-        <div class="tap-hint">Ketuk untuk masuk</div>
+        <div class="tap-hint">Sentuh untuk masuk</div>
         <div class="pclip">
           <button class="portal" type="button" tabindex="-1" aria-label="${p.code} ${p.name}">
             <div class="frame">
@@ -2477,7 +2478,7 @@ main().catch(e=>console.error(e));
     e.querySelector('.ps').textContent = 'Terbuka';
     Sound.sfx('open'); sparks(x, y, P.c, 24);
     await wait(900);
-    setLead(`Gerbang <b style="color:${P.c}">RESPOND</b> terbuka. Ketuk untuk masuk, ${esc(nm())}!`);
+    setLead(`Gerbang <b style="color:${P.c}">RESPOND</b> terbuka. Sentuh untuk masuk, ${esc(nm())}!`);
     e.classList.add('ready'); gateReady = true;
   }
   function onPortal(i){
